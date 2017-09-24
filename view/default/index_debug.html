@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴商城</title>
+	</head>
+
+	<body ng-app="mm" ng-controller="mmController-two" ng-cloak>
+		<div>
+			<header ng-include="'html/header.html'">
+
+			</header>
+
+			<div id="wrapper">
+				<div id="scroller">
+					<!--轮播图-->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide lunbo" ng-repeat="x in picShuzu">
+								<img ng-src="{{ HOST_IMAGE }}/{{x.image}}@800w" />
+							</div>
+
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+					<!--频道图-->
+					<div class="line"></div>
+					<!--线-->
+
+					<div class="nav-area">
+						<ul>
+							<li ng-click="qingzi('url')">亲子游</li>
+							<li ng-click="miyue('url')">蜜月游</li>
+							<li ng-click="xialing('url')">夏令营</li>
+							<li ng-click="huwai('url')">户外体验</li>
+						</ul>
+					</div>
+
+					<div class="line"></div>
+					<!--线-->
+
+					<!--商品-->
+
+					<!--2件的商品-->
+					<div class="two-product test" ng-repeat="x in classID">
+						
+						<div ng-show="x.list.length%2==0">
+							<div class="title-content">
+								{{x.category_name}}
+							</div>
+							<div class="product-content">
+								<ul>
+									<li ng-repeat="m in x.list" ng-click="link('javascript:;')">
+										<div class="div-img">
+											<img ng-src="{{ HOST_IMAGE }}/{{m.cover || 'empty.jpg'}}@400w" />
+										</div>
+										<div class="tou-ming">
+	
+										</div>
+										<div class="gouwu-logo" ng-click="joincar()">
+											<img src="../../static/mall_wap_front/default/img/shopping-car.png" />
+										</div>
+										<div class="desc">
+											{{m.brief}}
+										</div>
+										<div class="title-price">
+											<p>{{m.name}}</p>
+											<p><span>￥{{m.price.c}}起</span><span>已售：{{m.b_num.sale+m.r_num.sale}}件</span></p>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!--1件的商品-->
+
+					<div class="one-product test" ng-repeat="x in classID">
+						<div ng-show="x.list.length%2==1">
+							<div class="title-content">
+								{{x.category_name}}
+							</div>
+							<ul>
+								<li ng-repeat="m in x.list" ng-click="link('javascript:;')">
+									<div class="div-left">
+										<img ng-src="{{ HOST_IMAGE }}/{{m.cover || 'empty.jpg'}}@400w" />
+									</div>
+									<div class="div-right">
+										<p>{{m.brief}}</p>
+										<p>{{m.name}}</p>
+										<p>￥{{m.price.c}}起</p>
+										<p>已售：{{m.b_num.sale+m.r_num.sale}}件</p>
+										<button ng-click="joincar()">加入购物车</button>
+									</div>
+	
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="to-bottom" ng-show="showBottom">
+
+				</div>
+			</div>
+
+			<footer ng-include="'html/footer.html'">
+
+			</footer>
+		</div>
+	</body>
+	<!--
+    	作者：2777831894@qq.com
+    	时间：2016-07-21
+    	描述：核心库
+    -->
+    <script src="../../static/mall_wap_front/default/plugin/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../static/mall_wap_front/default/plugin/angular.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+		<script>
+		TBMM.dynamicLoading('css', [
+			HOST_STATIC+"/mall_wap_front/default/plugin/swiper-3.3.1.min.css",
+			HOST_STATIC+"/mall_wap_front/default/css/common.css",
+			HOST_STATIC+"/mall_wap_front/default/css/index.css",
+		]);
+		
+		TBMM.dynamicLoading('js', [
+			HOST_STATIC+"/mall_wap_front/default/js/wx_sign.js",
+			HOST_STATIC+"/mall_wap_front/default/plugin/swiper-3.3.1.min.js",
+			HOST_STATIC+"/mall_wap_front/default/plugin/iscroll.js",
+			"http://res.wx.qq.com/open/js/jweixin-1.0.0.js",
+			HOST_STATIC+"/mall_wap_front/default/js/common.js",
+			HOST_STATIC+"/mall_wap_front/default/js/index.js",
+		])
+		
+		
+	</script>
+	
+	
+</html>

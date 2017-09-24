@@ -1,0 +1,421 @@
+body {
+	background: #f5f5f5;
+}
+
+.dingdanOrder {
+	position: fixed;
+	top: 0;
+	height: 3.5rem;
+	background: #fff;
+	padding: 0 1.2rem;
+	line-height: 3.5rem;
+	width: 100%;
+	z-index: 10;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.gorder-id {
+	font-size: 1.2rem;
+	color: #4C4C4C;
+	float: left;
+}
+
+.dingdanOrder ul li.gorder-status {
+	font-size: 1rem;
+	color: #f53737;
+	margin-right: 2rem;
+    float: right;
+}
+
+@media only screen and (max-width: 350px) {
+	.dingdanOrder ul li.gorder-status {
+		margin-left: 5rem;
+	}
+}
+
+.section {
+	position: absolute;
+	top: 4.3rem;
+	bottom: 4.8rem;
+	width: 100%;
+	overflow: auto;
+}
+
+.dingdan-status {
+	padding-left: 1.2rem;
+	background: #fff;
+	overflow: hidden;
+}
+
+.dingdan-status>div {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.status-submit {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 1.6rem;
+	margin-bottom: 0.6rem;
+}
+
+.status-submit span {
+	font-size: 1rem;
+	color: #808080;
+}
+
+.status-img {
+	margin-bottom: 1.5rem;
+}
+
+.status-img ul {
+	width: 66%;
+	margin: 0 auto;
+}
+
+@media only screen and (max-width: 350px) {
+	.status-img ul {
+		width: 68%;
+		margin: 0 auto;
+	}
+}
+
+.status-img ul li {
+	float: left;
+}
+
+.status-img ul li.status-point {
+	width: 0.6rem;
+	height: 0.6rem;
+	background: url(../img/gorder-no-xuanzhong.png);
+	background-size: 100% 100%;
+}
+
+.status-img ul li.status-line {
+	width: 9rem;
+	height: 0.05rem;
+	background: #c9c9c9;
+	margin-top: 0.25rem;
+}
+
+@media only screen and (max-width: 350px) {
+	.status-img ul li.status-line {
+		width: 7.6rem;
+	}
+}
+
+.status-img-one ul li.first-point {
+	background: url(../img/gorder-xuanzhong.png);
+	background-size: 100% 100%;
+}
+
+.status-img-two ul li.first-point {
+	background: url(../img/gorder-xuanzhong.png);
+	background-size: 100% 100%;
+}
+
+.status-img-two ul li.first-line {
+	background: #F53737;
+}
+
+.status-img-two ul li.second-point {
+	background: url(../img/gorder-xuanzhong.png);
+	background-size: 100% 100%;
+}
+
+.status-img-three ul li.first-point {
+	background: url(../img/gorder-xuanzhong.png);
+	background-size: 100% 100%;
+}
+
+.status-img-three ul li.first-line {
+	background: #F53737;
+}
+
+.status-img-three ul li.second-point {
+	background: url(../img/gorder-xuanzhong.png);
+	background-size: 100% 100%;
+}
+
+.status-img-three ul li.second-line {
+	background: #F53737;
+}
+
+.status-img-three ul li.third-point {
+	background: url(../img/gorder-xuanzhong.png);
+	background-size: 100% 100%;
+}
+
+.fa-huo {
+	background: url(../img/shouhuo.png) no-repeat left 0.3rem;
+	background-size: 1rem 1rem;
+	padding-left: 1rem;
+	padding-bottom: 1.2rem;
+	margin-top: 2.4rem;
+}
+
+.fa-huo p {
+	color: #4c4c4c;
+	font-size: 1rem;
+}
+
+.fa-huo p.fa-huo-status {
+	margin-left: 0.4rem;
+}
+
+.fa-huo-time {
+	margin: 0.5rem 0 0 0.6rem;
+}
+
+.personal-information {
+	border-top: 1px solid #e5e5e5;
+	padding-left: 1.6rem;
+	background: url(../img/address.png) no-repeat left 2rem;
+	background-size: 1rem 1.4rem;
+}
+
+.personal-information-name {
+	margin: 1.2rem 0 0.7rem;
+}
+
+.personal-information-name span {
+	font-size: 1.2rem;
+	color: #4C4C4C;
+}
+
+.personal-information-name span.name {
+	margin-right: 4.2rem;
+}
+
+.personal-information-address {
+	font-size: 1rem;
+	color: #808080;
+	margin-bottom: 1.2rem;
+}
+
+.dianpu-Info {
+	padding-left: 1.2rem;
+	background: #fff;
+	margin-top: 0.8rem;
+}
+
+.dianpu-Info-container {
+	border-bottom: 1px solid #E5E5E5;
+	padding: 1.2rem 1.2rem 1.2rem 1.8rem;
+	font-size: 1.2rem;
+	color: #4c4c4c;
+	background: url(../img/inDent01.png) no-repeat left center;
+	background-size: 1.4rem 1.4rem;
+	position: relative;
+}
+
+.dianpu-Info-container a {
+	display: block;
+	position: absolute;
+	width: 0.8rem;
+	height: 1rem;
+	background: url(../img/arrow.png);
+	background-size: 100% 100%;
+	right: 1.2rem;
+	top: 1.5rem;
+}
+
+.product-information .gorder-id {
+	float: none;
+	padding: 1.2rem 0;
+}
+
+.img-information {
+	border-bottom: 1px solid #E5E5E5;
+	padding-bottom: 1.2rem;
+	overflow: hidden;
+}
+
+.img-information>div {
+	float: left;
+}
+
+.img-information>div.img-information-right {
+	float: right;
+	margin-right: 1.2rem;
+	width: 14%;
+}
+
+.img-information-left {
+	width: 5rem;
+	height: 5rem;
+	border: 1px solid #E5E5E5;
+}
+.img-information-left img{
+	width:100%;
+	height: 100%;
+}
+
+.img-information-right p {
+	color: #999999;
+	font-size: 1rem;
+	float: right;
+	width: 8rem;
+    text-align: right;
+}
+
+.img-information-right p.original-price {
+	color: #333333;
+}
+
+.name-brief span {
+	font-size: 1rem;
+	color: #333333;
+}
+
+.model-number {
+	font-size: 1rem;
+	color: #999999;
+	margin-top: 6%;
+}
+
+.img-information-center {
+	margin-left: 0.8rem;
+	width: 16rem;
+}
+
+@media only screen and (max-width: 350px) {
+	.img-information-center {
+		margin-left: 0.8rem;
+		width: 13rem;
+	}
+}
+
+.sum-price {
+	padding-left: 1.2rem;
+	background: #fff;
+}
+
+.sum-price-container {
+	padding: 0.8rem 1.2rem 0.8rem 0;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.yun-fei {
+	margin: 0.6rem 0;
+}
+
+.zong-jia,
+.yun-fei span {
+	font-size: 1rem;
+	color: #999999;
+}
+
+.dingdan-zongjia {
+	font-size: 1rem;
+	color: #4C4C4C;
+}
+
+.disbursements {
+	padding: 0.8rem 1.2rem 1.2rem 0;
+	overflow: hidden;
+}
+
+.disbursements .shi-fu-kuan {
+	font-size: 1rem;
+	color: #333333;
+	float: left;
+}
+
+.disbursements .shi-fu-kuan-num {
+	font-size: 1rem;
+	color: #F53737;
+	float: right;
+}
+
+.pay-way-time {
+	background: #fff;
+	margin-top: 0.8rem;
+	padding: 1.2rem 1.2rem 1.6rem;
+}
+
+.pay-way-time-span-one {
+	color: #333333;
+	width: 62%;
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	float: left;
+}
+
+.pay-way-time-span-two {
+	color: #a5a5a5;
+	float: right;
+}
+
+@media only screen and (max-width:350px) {
+	.pay-way-time-span-one {
+		width: 56%;
+	}
+}
+
+.sum-price-container p {
+	overflow: hidden;
+}
+
+.zong-jia-span-one {
+	float: left;
+}
+
+.zong-jia-span-two {
+	float: right;
+}
+
+.order-time {
+	margin: 1.2rem 0;
+	overflow: hidden;
+}
+.pay-time{
+	overflow: hidden;
+}
+.pay-way{
+	overflow: hidden;
+}
+.dingdan-footer {
+	height: 4.8rem;
+	background: #fff;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	border-top: 1px solid #E5E5E5;
+	width: 100%;
+}
+
+.dingdan-footer button {
+	width: 6rem;
+	height: 2.4rem;
+	font-size: 1.2rem;
+	margin-right: 1.2rem;
+	float: right;
+	margin-top: 4%;
+}
+
+.delete-order,
+.refund {
+	background: #fff;
+	color: #333333;
+	border: 1px solid #b3b3b3;
+	border-radius: 0.2rem;
+}
+
+.buy-again {
+	background: #F53737;
+	color: #fff;
+	border-radius: 0.2rem;
+}
+
+
+.order-comment {
+	background: #fff;
+	padding: 1rem 1.2rem;
+	border-top: 1px solid #e5e5e5;
+	color: #333;
+	font-size: 1.1rem;
+}
+
+

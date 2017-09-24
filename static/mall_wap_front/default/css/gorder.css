@@ -1,0 +1,269 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+ul,
+li,
+ol {
+	list-style: none;
+}
+
+mg {
+	display: block;
+}
+
+a {
+	text-decoration: none;
+	color: #4c4c4c;
+}
+
+input,
+a,
+button {
+	outline: none;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	background: #f5f5f5;
+}
+
+html {
+	font-size: 14px;
+	overflow-x: hidden;
+}
+
+i {
+	font-style: normal;
+}
+
+#tes-two {
+	width: 100%;
+	overflow-x: hidden;
+	margin: 44px 0px 4.8rem 0px;
+}
+
+.is-down {
+	text-align: center;
+	height: 4rem;
+	line-height: 4rem;
+}
+
+.dingdanOrder {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	background: #fff;
+}
+
+.dingdanOrder ul {
+	display: flex;
+	justify-content: space-around;
+}
+
+.dingdanOrder ul li {
+	color: #4c4c4c;
+}
+
+.line {
+	height: 4px;
+	background: #f5f5f5;
+	border-top: 1px solid #e6e6e6;
+}
+
+.dingdanOrder ul li.red {
+	color: #f03535;
+}
+
+.dingdanOrder ul li.active {
+	color: #f03535;
+}
+
+.dianpuInfo {
+	padding: 0 12px;
+}
+
+.dianpuCon {
+	padding: 12px 0;
+	background: url(../img/inDent01.png) no-repeat left center;
+	background-size: 18px 18px;
+	position: relative;
+}
+
+.dianpuCon a {
+	margin-left: 22px;
+}
+
+.dianpuCon a span {
+	width: 10px;
+	height: 10px;
+	background: url(../img/arrow.png) no-repeat right center;
+	background-size: 10px 10px;
+	display: inline-block;
+	margin-left: 25px;
+}
+
+.payMoney {
+	color: #f03535;
+	font-size: 12px;
+	position: absolute;
+	right: 0;
+	right: 5px;
+}
+
+.eveRy {
+	margin-top: 10px;
+	background: #fff;
+}
+
+.every {
+	margin-top: 0px;
+	background: #fff;
+}
+
+.traDeCon {
+	width: 100%;
+	padding-left: 12px;
+}
+
+.traDe {
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 12px;
+}
+
+.picPrice {
+	overflow: hidden;
+}
+
+.picPrice>div {
+	float: left;
+}
+
+.traDe .traDep {
+	margin: 12px 0;
+	color: #333333;
+	font-size: 12px;
+}
+
+.img {
+	width: 62px;
+	height: 62px;
+	border: 1px solid #e5e5e5;
+	overflow: hidden;
+}
+.img img{
+	width: 100%;
+	height:100%;
+}
+.picPrice>div.everyPrice {
+	float: right;
+	margin-right: 24px;
+	margin-top: -2px;
+}
+
+.jieshao {
+	margin-left: 8px;
+	width: 48%;
+}
+
+.jieshao p span {
+	font-size: 10px;
+	color: #333333;
+}
+
+.jieshao p span.spanname {
+	margin-right: 10px;
+}
+
+.jieshao .xingHao {
+	color: #999999;
+	font-size: 10px;
+	margin-top: 5px;
+}
+
+.everyPrice .p1 {
+	font-size: 14px;
+	color: #333333;
+}
+
+.everyPrice .p2 {
+	font-size: 9px;
+	color: #999999;
+	text-decoration: line-through;
+}
+
+.everyPrice .p3 {
+	font-size: 10px;
+	color: #999999;
+	margin-top: 15%;
+}
+
+.zhiFu .divOne {
+	border-bottom: 1px solid #e5e5e5;
+	padding: 6px 0 14px 0px;
+}
+
+.zhiFu .divOne span {
+	width: 100%;
+	display: inline-block;
+	margin-left: 36%;
+	color: #333333;
+	font-size: 14px;
+}
+
+
+/*适配iphone5*/
+
+@media only screen and (max-width: 350px) {
+	.zhiFu .divOne span {
+		margin-left: 26%;
+	}
+}
+@media only screen and (min-width: 400px) {
+	.zhiFu .divOne span {
+		margin-left: 43%;
+	}
+}
+.divTwo {
+	padding: 12px 0 12px 0px;
+}
+
+.divTwo button {
+	width: 21.8%;
+	height: 34px;
+	background: #f03535;
+	color: #fff;
+	border-radius: 2px;
+	margin-left: 70%;
+}
+
+#loading {
+	line-height: 45px;
+	height: 45px;
+	text-align: center;
+}
+
+#loading img {
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.order_goods {
+	margin-top: 50px;
+}
+
+.order_goods .cover {
+	width: 80px;
+	height: 80px;
+}

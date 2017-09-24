@@ -1,0 +1,70 @@
+<div class="mask" id="mask" ontouchmove="return false;">
+</div>
+
+<div class="cart-shopping-cart-layer" id="cart-shopping-cart-layer">
+	<div class="close-shopping" ng-click="hideStocks()" id="close-shopping" ontouchmove="return false;">
+
+	</div>
+	<div class="cart-product-info" id="cart-product-info" ontouchmove="return false;">
+
+		<div class="small-detail-pic">
+			<img ng-src="{{ HOST_IMAGE }}/{{ cargo_select_stock.cover || cargo_goods.cover || 'empty.jpg'}}@!400w_400h_jpg" />
+		</div>
+
+		<div class="detail-info">
+			<div>
+				<p>{{cargo_goods.name}}</p>
+				<p>已选：{{cargo_select_stock.spec}}</p>
+				<p><span>￥ {{cargo_select_stock.price | number : 2 }}</span><span>库存：<i>{{cargo_select_stock.num-cargo_select_stock.l_num}}</i></span></p>
+
+			</div>
+		</div>
+
+		<div class="clear">
+
+		</div>
+
+	</div>
+
+	
+		<div class="pd-xing-hao-con" id="pd-xing-hao-con">
+			
+
+				<div class="pd-xing-hao" ng-show="cargo_stock_num==0" ontouchmove="return false;">
+					<ul style="width: 100%;" ng-show="cargo_stock_num==0">
+						<div id="no-kucun">此商品暂无库存</div>
+					</ul>
+					<div style="height: 1rem;">
+
+					</div>
+				</div>
+
+				<div class="pd-xing-hao" ng-show="cargo_goods.sku_styles[sku_spec].length > 0" ng-repeat="sku_spec in cargo_goods.sku_specs">
+					<span style="width: 100%;display:block;">{{sku_spec}}</span>
+
+					<ul style="width: 100%;overflow: hidden;">
+						<li ng-repeat="sku_style in cargo_goods.sku_styles[sku_spec]" ng-class="cargo_stock_styles_flag[sku_spec+'_'+sku_style]==1 ? 'selected' : '' " ng-click="cargoStockStyleSelect(sku_spec, sku_style)">{{sku_style}}</li>
+					</ul>
+
+					<div style="height: 1rem;">
+
+					</div>
+				</div>
+			</div>
+		
+	
+
+	<div class="pd-number" id="pd-number" ontouchmove="return false;">
+		<span>数量</span>
+		<div>
+			<button ng-click="cargo_minus()">-</button>
+			<input type="text" readonly="readonly" ng-model="cargo_buy_num" />
+			<button ng-click="cargo_plus()">+</button>
+		</div>
+	</div>
+
+	<div id="carge_submit" ng-class="cargo_select_stock.num - cargo_select_stock.l_num > 0 ? 'click-in ajax_btn' : 'click-in ajax_btn submit-disabled' " ng-click="cargo_submit()" ontouchmove="return false;">
+		加入购物车
+	</div>
+
+</div>

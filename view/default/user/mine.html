@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-个人中心</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/mine.css" />
+
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body ng-app="mineapp" ng-controller="minecontroller" ng-cloak>
+
+		<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+
+		<div id="tes">
+
+			<div id="tes-two">
+				<header>
+					<div class="sign-in" ng-click="signup()"></div>
+					<div class="avatar">
+						<div class="your-photo" ng-click="link('/user/info.html')">
+
+							<img ng-src="{{user.avator||HOST_IMAGE + '/empty.jpg'}}">
+						</div>
+						<span class="rank-grade">
+           					 <i class="grade-num">V0</i>
+          				     <i class="grade-desc">默认等级</i>
+       				   </span>
+					</div>
+					<div class="user-info">
+						<h5 ng-bind="user.nickname" ng-click="link('/user/info.html')"></h5>
+						<p class="my-point">我的积分：<em ng-bind="stat.points"></em></p>
+						<p class="my-balance">我的余额：￥<em ng-bind="stat.comm_withdrawal + stat.comm_lock + stat.comm_new  | number : 2  "></em></p>
+					</div>
+				</header>
+				<section class="my-shopping">
+
+				</section>
+				<section class="my-shoppingtwo">
+					<ul>
+						<li ng-click="link('/user/collect.html')">
+							<span>☆</span>
+							<span>收藏的商品</span>
+						</li>
+						<li ng-click="link('/user/gview.html')">
+							<span ng-bind="stat.goods_view_num">0</span>
+							<span>浏览足迹</span>
+
+						</li>
+						<li>
+							<span>0</span>
+							<span>我的消息</span>
+
+						</li>
+					</ul>
+				</section>
+				<section class="my-order">
+					<h3>
+				        <span class="my-order-title">我的订单</span>
+				        <a href="{{ HOST }}/gorder/mine.html"><span class="all-orders user-arrow">全部订单</span></a>
+				    </h3>
+					<ul>
+						<li>
+							<a href="{{HOST}}/gorder/mine.html?tab=1" class="for-pay">待付款</a>
+							<span class="order-count" ng-bind="stat.num_o_unpayed" ng-show="stat.num_o_unpayed">0</span>
+						</li>
+						<li>
+							<a href="{{HOST}}/gorder/mine.html?tab=2" class="for-delive">待发货</a>
+							<span class="order-count" ng-bind="stat.num_o_undeliver" ng-show="stat.num_o_undeliver">0</span>
+						</li>
+						<li>
+							<a href="{{HOST}}/gorder/mine.html?tab=3" class="for-recept">待收货</a>
+							<span class="order-count" ng-bind="stat.num_o_ondeliver" ng-show="stat.num_o_ondeliver">0</span>
+						</li>
+						<li>
+							<a href="{{HOST}}/gorder/mine.html" class="refunding">退款中</a>
+							<span class="order-count" ng-bind="stat.num_o_onreturn" ng-show="stat.num_o_onreturn">0</span>
+						</li>
+					</ul>
+				</section>
+				<section class="my-wallet">
+					<h3><span class="my-wallet-title">我的钱包</span></h3>
+					<ul>
+						<li>
+							<div class="wallet-detail">
+								<span class="count" ng-bind="stat.points">0</span>
+								<span class="title">积分</span>
+							</div>
+						</li>
+						<li ng-click="link('/user/mine_coupon.html')">
+							<div class="wallet-detail">
+								<span class="count">{{zong_num}}</span>
+								<span class="title">优惠券</span>
+							</div>
+						</li>
+						<li>
+							<div class="wallet-detail">
+								<span class="count">0</span>
+								<span class="title">红包</span>
+							</div>
+						</li>
+						<li>
+							<div class="wallet-detail">
+								<a href="#" id="baitiaoItem">
+									<span class="count" ng-bind="'￥' + (stat.comm_withdrawal + stat.comm_lock + stat.comm_new  | number : 2 )">0</span>
+									<span class="title">余额</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</section>
+				<section class="personal-info">
+					<ul>
+						<li>
+							<span class="personal-info-title">个人资料</span>
+							<a href="{{HOST}}/user/info.html">
+								<span class="user-arrow">设置登录账号</span>
+							</a>
+						</li>
+						<li>
+							<span class="personal-info-title">收货地址</span>
+							<a href="javascript:;">
+								<span class="user-arrow" ng-click="manger_addr()">管理收货地址</span>
+							</a>
+						</li>
+						<!--li>
+							<span class="personal-info-title">推广二维码</span>
+							<a href="javascript:;">
+								<span class="user-arrow">推广二维码</span>
+							</a>
+						</li-->
+					</ul>
+				</section>
+				<!--section class="extension mb50" id="youlove">
+					<h3>
+				<div class="line-one"></div>
+				<span class="extension-title" id="extitle">
+           					 猜您喜欢
+       		    </span>
+				<div class="line-two"></div>
+
+				<div class="extension-detail">
+				</div>
+			 </h3>
+				</section-->
+
+			</div>
+			<footer ng-include="HOST+'/html/footer.html'">
+			</footer>
+		</div>
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/mine.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

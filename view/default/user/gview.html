@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-商品预览</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon"/>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" /> 
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/mine_collect.css" />
+		
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body ng-app="mineapp" ng-controller="minecontroller" ng-cloak>
+		<div id="tes">
+			
+			<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+
+			<div id="tes-two">
+				
+				<div id="context" style="margin-bottom: 80px">
+				    <!-- 收藏头部 -->
+				    <div class="collect_title tc">
+				        共浏览了 <span class="co_red" id="fav_total_num">{{ goods_list.length }}</span> 件商品
+				    </div>
+				    <!-- 收藏的商品列表 -->
+			        <ul class="mod_list collect_list">
+		                <li ng-repeat="item in goods_list">
+		                    <div class="list_inner ">
+		                        <div class="photo" ng-click="link('/goods/detail.html?gid='+item._id)">
+		                        	<div class="img" style="background-image: url({{HOST_IMAGE}}/{{item.cover || 'empty.jpg'}}@!320h_jpg); background-size: cover; background-position: 50% 50%;">
+
+			                    	</div>
+		                        </div>
+		                        <div class="info"  ng-click="link('/goods/detail.html?gid='+item._id)">
+		                            <p class="c_title">
+		                                {{item.name}}
+		                            </p>
+									<p class="sku" style="display:block;margin-top:2px;">
+										{{item.code}}
+		                            </p>
+		                            <p class="sku" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+		                                <span class="price">¥ {{item.price.c}}</span>
+		                                <span style="" class="change">
+		                                    <i class="up_arrow"></i>
+		                                </span>
+		                            </p>
+		                        </div>
+		                        <!--div ng-click="deleteGoods(e, item.detail._id)" class="del_btn"></div-->
+		                    </div>
+		                </li>
+			        </ul>
+				
+				</div>
+				  
+				
+			</div>
+
+			</div>
+			<footer ng-include="HOST+'/html/footer.html'">
+			</footer>
+		</div>
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/mine_view.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

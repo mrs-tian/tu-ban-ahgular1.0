@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-个人信息管理</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon"/>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" /> 
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/plugin/glyphicons/css/bootstrap.min.css" />
+		
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/mine_info.css" />
+		
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body ng-app="MM" ng-controller="MineInfoController" ng-init="isEdit=false" ng-cloak>
+		
+		<div id="tes">
+			
+			<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+			
+			<header>
+		        <span onclick="javascript:history.back(-1);" class="back-to">返回</span>
+		        个人资料
+		    </header> 
+    
+			<div id="tes-two">
+				
+				<div id="context" style="margin-top: 30px">
+					
+			        <div id="divInfo" class="personal-complete" >
+			            
+			            <!--side nav begin-->
+			            <div class="personal-center">
+			                <ul class="side-nav" id="list">
+			                    <li data-id="editLoginName" class="clearfix" ng-click="edit('editLoginName')">
+			                        <a href="javascript:void(0)">
+			                            <span class="user-tip-text"><i class="arrow-l"></i>此账号用于微信外登录。</span>
+			                            <div class="title  user-position"><i class="icon-name"></i><span class="text">登录账号</span></div>
+			                            <div class="cont-value">
+			                                <i class="arrow"></i>    <span class="value" id="cust_loginname">{{ user.username }}</span>
+			                            </div>
+			
+			                        </a>
+			                    </li>
+			                    <li data-id="editpassword" class="clearfix" ng-click="edit('editPassword')">
+			                        <a href="javascript:void(0)">
+			                            <div class="title"><i class="icon-name"></i><span class="text">密码</span></div>
+			                            <div class="cont-value"><i class="arrow"></i><span class="value" id="cust_pwd">******</span></div>
+			                        </a>
+			                    </li>
+			                    
+			                    <li data-id="editName" class="clearfix" ng-click="edit('editName')">
+			                        <a href="javascript:void(0)">
+			                            <div class="title"><i class="icon-tname"></i><span class="text">真实姓名</span></div>
+			                            <div class="cont-value"><i class="arrow"></i><span class="value" id="cust_truename">{{ user.realname || '未填写' }}</span></div>
+			                        </a>
+			                    </li>
+			                    <li data-id="editEmail"  class="clearfix" ng-click="edit('editEmail')">
+			                        <a href="javascript:void(0)">
+			                            <div class="title"><i class="icon-qq-line"></i><span class="text">邮箱号</span></div>
+			                            <div class="cont-value">
+			                                <i class="arrow"></i><span class="value" id="cust_email" >{{ user.email || '未填写' }}</span>
+			                            </div>
+			                        </a>
+			                    </li>
+			                    <!--<li data-id="editWchat"  class="clearfix" ng-click="edit('editWchat')">
+			                        <a href="javascript:void(0)">
+			                            <div class="title"><i class="icon-wechat-line"></i><span class="text">微信号</span></div>
+			                            <div class="cont-value"><i class="arrow"></i><span class="value" id="cust_wechat">{{ user.wx_name || '未填写' }}</span></div>
+			                        </a>
+			                    </li>-->
+			                    <li data-id="editPhone"  class="clearfix" ng-click="edit('editPhone')">
+			                        <a href="javascript:void(0)">
+			                            <div class="title"><i class="icon-mobile"></i><span class="text">手机号</span></div>
+			                            <div class="cont-value"><i class="arrow"></i><span class="value" id="cust_phone">{{ user.mobile || '未填写' }}</span></div>
+			                        </a>
+			                    </li>
+			                </ul>
+			            </div>
+			            <div class="button-exit" style="margin-top: 10px;" id="exit"><a href="javascript:void(0)" ng-click="logout()" class="btnLogout" style="width: 90%; margin: auto;">退出登陆</a></div>
+			
+			        </div>
+			        <section class="login" id="editLoginName" style="display: none">
+			            <div>
+			                <span>
+			                    <i class="glyphicon glyphicon-user"></i>
+			                </span>
+			                <input id="txt_cust_loginname" name="cust_loginname" type="text" placeholder="请输入登录账号" value="" ng-model="user.username">
+			            </div>
+			            <a ng-click="submitUsername()" data-id="txt_cust_loginname" data-tip="请输入登录账号！" data-tage="cust_loginname" class="btnLogin">修改登录账号</a>
+			        	<a ng-click="cancelUpdate()" class="btnLogout ajax_btn">取消</a>
+			        </section>
+			
+			
+			        <section class="login" id="editPassword" style="display: none">
+			            <div>
+			                <span>
+			                    <i class="glyphicon glyphicon-lock"></i>
+			                </span>
+			                <input id="txt_cust_pwd" ng-model="user.password" name="cust_pwd" type="password" placeholder="请输入密码">
+			            </div>
+			            <a ng-click="submitPassword()" data-id="txt_cust_pwd" data-tip="请输入密码！" data-tage="cust_pwd" class="btnLogin ajax_btn">修改密码</a>
+			        	<a ng-click="cancelUpdate()" class="btnLogout ajax_btn">取消</a>
+			        </section>
+			
+			
+			        
+			        <section class="login" id="editName" style="display: none">
+			            <div>
+			                <span>
+			                    <i class="glyphicon glyphicon-user"></i>
+			                </span>
+			                <input id="txt_cust_truename" name="cust_truename" type="text" placeholder="请输入姓名" value="" ng-model="user.realname">
+			            </div>
+			            <a ng-click="submitName()" data-id="txt_cust_truename" data-tip="请输入姓名！" data-tage="cust_truename" class="btnLogin">修改姓名</a>
+			        	<a ng-click="cancelUpdate()" class="btnLogout ajax_btn">取消</a>
+			        </section>
+			        <section class="login" id="editEmail" style="display: none">
+			            <div>
+			                <span>
+			                    <i class="glyphicon glyphicon-envelope"></i>
+			                </span>
+			                <input id="txt_cust_email" name="cust_email" type="text" placeholder="邮箱号" value="" ng-model="user.email">
+			            </div>
+			            <a ng-click="submitEmail()" data-id="txt_cust_email" data-tip="请输入邮箱号！" data-tage="cust_email" class="btnLogin">修改邮箱号</a>
+			        	<a ng-click="cancelUpdate()" class="btnLogout ajax_btn">取消</a>
+			        </section>
+			        <section class="login" id="editWchat" style="display: none">
+			            <div>
+			                <span>
+			                    <i class="glyphicon glyphicon-user"></i>
+			                </span>
+			                <input id="txt_cust_wechat" name="cust_wechat" type="text" placeholder="请输入微信号" value="" ng-model="user.wx_name">
+			            </div>
+			            <a ng-click="submitWechat()" data-id="txt_cust_wechat" data-tip="请输入微信号！" data-tage="cust_wechat" class="btnLogin">修改微信</a>
+			        	<a ng-click="cancelUpdate()" class="btnLogout ajax_btn">取消</a>
+			        </section>
+			        <section class="login" id="editPhone" style="display: none">
+		                <div>
+		                    <span>
+		                        <i class="glyphicon glyphicon-phone-alt"></i>
+		                    </span>
+		                    <input id="txt_cust_phone" name="cust_phone" type="text" placeholder="请输入手机号" value="" ng-model="user.mobile">
+		                </div>
+		                <a ng-click="submitMobile()" data-id="txt_cust_phone" data-tip="请输入手机号！" data-tage="cust_phone" class="btnLogin">修改手机号</a>
+						<a ng-click="cancelUpdate()" class="btnLogout ajax_btn">取消</a>
+			        </section>
+			    </div>
+				  
+				
+			</div>
+
+			<footer ng-include="HOST+'/html/footer.html'">
+			</footer>
+		</div>
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/mine_info.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

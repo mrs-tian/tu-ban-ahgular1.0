@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-未支付订单</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/gorder_pay.css" />
+
+		<!--
+        	作者：2777831894@qq.com
+        	时间：2016-07-25
+        	描述：Angular在头部引入可避免页面{{}}标签闪现的问题
+        -->
+
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body ng-app="gorderPay" ng-controller="gorderPayController" ng-cloak>
+
+		<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+		<!--<div ng-include="HOST+'/html/loading.html'" ng-show="g_loading"></div>-->
+		<div class="g-loading" ng-show="g_loading">
+			<img src="../../../static/mall_wap_front/default/img/loading-1.gif" />
+		</div>
+		<div class="no-address" ng-show="!gorder.address" ng-click="addr_init_create()">
+			添加收获地址
+		</div>
+		<div ng-class="!gorder.seq ? 'have-address' : 'have-address-locked'" ng-click="addr_choose_address()" ng-show="gorder.address">
+			<div class="arrive">送至</div>
+			<div class="arrive-add">
+				<p><span ng-show="gorder.address.is_default==1">【默认】</span>{{gorder.address.address.p.n}}{{gorder.address.address.c.n}}{{gorder.address.address.d.n}}{{gorder.address.detail}}</p>
+				<p>{{gorder.address.receiver}} {{gorder.address.mobile}}</p>
+			</div>
+
+		</div>
+
+		<div class="pd-information">
+			<h1>商城总店</h1>
+			<div class="pd-detail" ng-repeat="item in gorder.items">
+
+				<div class="pd-detail-left" style="background-image: url({{HOST_IMAGE}}/{{item.g_cover || 'empty.jpg'}}@!320h_jpg); background-size: cover; background-position: 50% 50%;">
+
+				</div>
+				<div class="pd-detail-center">
+					<div class="pd-detail-center-brief">
+						{{item.g_name}}
+					</div>
+					<p class="bian-num">编号：{{item.g_code}}</p>
+					<p>型号：{{item.g_spec}}</p>
+				</div>
+				<div class="pd-detail-right">
+					<p class="pd-detail-right-price">￥ {{item.p_price | number : 2}}</p>
+					<p class="tr">x <span ng-bind="item.num"></span></p>
+				</div>
+
+				<div class="delivery-method" ng-show="handle_type == 'create' && src_type == 'cart'">
+					<button ng-click="cargo_minus(item.g_stock_id)" class="ajax_btn btn-one">-</button>
+					<input type="text" readonly="readonly" ng-model="item.num" />
+					<button ng-click="cargo_plus(item.g_stock_id)" class="ajax_btn">+</button>
+				</div>
+
+			</div>
+
+			<div class="total tr">
+				<span>共 {{gorder.g_num}} 件商品， 合计：<i class="total-price">￥ {{gorder.t_price|number:2}}</i></span>
+			</div>
+
+			<!--优惠券-->
+			<div class="coupon-gorder" ng-click="choose_one_coupon()" ng-show="sub_click_before">
+				<span class="coupon-name">优惠券</span>
+				<span class="coupon-num"><i>{{fuhe_condition.length}}</i>张可用</span>
+				<span class="coupon-status" ng-show="mei_xuan">未使用></span>
+				<span class="coupon-status" ng-show="xuan_le">¥&nbsp;&nbsp;-{{gorder.coupon_price|number:2}}</span>
+			</div>
+			<div class="coupon-gorder" ng-show="sub_click_later">
+				<span class="coupon-status">¥&nbsp;&nbsp;-{{gorder.coupon_price || 0|number:2}}</span>
+			</div>
+			<!--<div class="coupon-gorder" ng-show="sub_click_tijiao">
+				<span class="coupon-status">未使用优惠券</span>
+			</div>-->
+			<div class="coupon-mask" ng-show="coupon_mask">
+				<ul>
+					<li ng-repeat="x in fuhe_condition" ng-click="xuan_input(x._id,$event,x.discount)">
+						<input type="radio" name="xuan-zhong" />
+						<img ng-src="{{HOST_IMAGE}}/{{x.cover}}" />
+					</li>
+				</ul>
+				<p ng-show="fuhe_condition==0">很抱歉，您暂无可使用的优惠券</p>
+				<button ng-show="fuhe_condition==0" class="no-back" ng-click="no_back()">返回</button>
+			</div>
+
+			<div class="yes-or-no" ng-show="yes_or_no">
+				<button ng-click="xuan_zhong()" id="que-ding-na-yi-zhang">确定</button>
+				<button ng-click="cancle_xuan_zhong()" id="cancel-na-yi-zhang">取消</button>
+			</div>
+			<div class="zhe-zhu-bai" ng-show="click_back">
+
+			</div>
+
+			<!--备注-->
+			<div class="order-comment" ng-show="no_seq">
+				<textarea maxlength="45" placeholder="订单备注 (限45字)" ng-model="gorder.note" id="bei-zhu"></textarea>
+				<span class="word-limit">{{gorder.note?gorder.note.length:0}}/45</span>
+			</div>
+			<!--提交订单之后显示的-->
+			<div class="order-comment-two" ng-show="have_seq">
+				备注：{{gorder.note?gorder.note:'无'}}
+			</div>
+		</div>
+
+		<!--提交按钮-->
+		<div class="submit-order">
+
+			<div class="submit-button ajax_btn" ng-click="createOrder()" ng-show="handle_type == 'create'">
+				提交订单
+			</div>
+			<div class="pay-button ajax_btn" ng-click="payOrder()" ng-show="handle_type == 'pay'">
+				支付
+			</div>
+			<div class="submit-free">
+				<p class="submit-free-zongji">运费：<span ng-bind="gorder.deliver_price || 0 | number: 2"></span> &nbsp;&nbsp; 应付: <span ng-bind="gorder.pay_price || 0 | number : 2"></span></p>
+			</div>
+		</div>
+
+		<div class="pay-detail-mask" ng-show="pay_detail_mask" ng-click="pay_detail_hide()">
+
+		</div>
+
+		<div class="pay-detail" ng-show="pay_detail">
+			<div class="pay-detail-title">
+				<div class="pay-detail-title-btn" ng-click="pay_detail_hide()">
+
+				</div>
+				选择支付方式
+			</div>
+
+			<!--<div class="pay-detail-num">
+				<div class="pay-detail-num-left">
+					<p><span class="space"></span>商品总额 :</p>
+					<p><span class="plus">+</span>运费 :</p>
+					<p><span>=</span>应付金额 :</p>
+				</div>
+				<div class="pay-detail-num-right">
+					<p><span class="span-one"></span><span class="span-two">￥26626.00</span></p>
+					<p><span class="span-one"></span><span class="span-two">￥0.00</span></p>
+					<p class="amount-payable"><span class="span-one"></span><span class="span-two">￥2626.00</span></p>
+				</div>
+			</div>-->
+			<div class="pay-detail-button">
+				<button class="wechat-pay" ng-click="toWxPay()">微信支付</button>
+			</div>
+
+		</div>
+
+		<div class="choose-address" ng-show="addr_address_show">
+			<div>
+				<div class="shouhuo-name">
+					<span>收货人</span><input type="text" placeholder="姓名" ng-model="addr_addr.receiver" />
+				</div>
+				<div class="contact-method">
+					联系方式<input type="text" placeholder="手机或电话号码" ng-model="addr_addr.mobile" />
+				</div>
+				<div class="province">
+					<div>
+						<span>省</span>
+						<select class="province-province" ng-model="addr_p_code" ng-options="option.code as option.name for option in addr_provinces" ng-change="addr_selected(1)">
+							<option value="">-请选择-</option>
+						</select>
+					</div>
+					<div id="city">
+						<span>市</span>
+						<select class="province-city" ng-model="addr_c_code" ng-options="option.code as option.name for option in addr_cities" ng-change="addr_selected(2)">
+							<option value="">-请选择-</option>
+						</select>
+					</div>
+					<div>
+						<span class="qu-xian">区/县</span>
+						<select class="province-county" ng-model="addr_d_code" ng-options="option.code as option.name for option in addr_districts">
+							<option value="">-请选择-</option>
+						</select>
+					</div>
+				</div>
+				<div class="detail-address">
+					详细地址<input type="text" placeholder="街道地址" ng-model="addr_addr.detail" />
+				</div>
+				<div class="set-default-address" ng-click="addr_set_default()">
+					<div ng-class="addr_addr.is_default==1 ? 'set-default-address-icon' : 'set-default-address-icon no-active' ">
+
+					</div>
+					<div>
+						设为默认地址 <span>(每次购买时会默认使用该地址)</span>
+					</div>
+
+				</div>
+			</div>
+			<div class="confirm-button">
+				<button ng-click="addr_confirm_handle()">确认</button>
+				<button ng-click="addr_cancel_address()" class="cancle">取消</button>
+			</div>
+		</div>
+
+		<!--地址列表有收获地址 这个显示  没有不显示	-->
+		<div class="addr-add" ng-show="addr_addresses_show">
+			<div>
+				<div class="addr-add-one" ng-repeat="x in addr_user_addresses">
+					<div class="addr-default-div" ng-click="addr_select_addr(x._id)"><button ng-class=" x._id == gorder.address._id ? 'addr-default-button active' : 'addr-default-button' "></button></div>
+					<div class="add-info" ng-click="addr_select_addr(x._id)">
+						<p>{{x.address.p.n+x.address.c.n+x.address.d.n+x.detail}}</p>
+						<p>{{x.receiver}}&nbsp;&nbsp;{{x.mobile}}</p>
+					</div>
+					<div class="addr-add-button-div" ng-click="addr_init_update(x)"><button class="addr-update-button"></button></div>
+				</div>
+				<div class="add-new" ng-click="addr_init_create()">
+					新增收货地址
+					<button id="add-btn"></button>
+				</div>
+				<button class="cancle" ng-click="addr_addresses_show=false">取消</button>
+			</div>
+		</div>
+	</body>
+	
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../../../static/mall_wap_front/default/thirdpart/pingpp/pingpp_pay.js"></script>-->
+	<script src="../../../static/mall_wap_front/default/plugin/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/plugin/sha1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/gorder_pay.js?v=1" type="text/javascript" charset="utf-8"></script>
+
+</html>

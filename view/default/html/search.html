@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-商品搜索</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/search.css" />
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/js/search.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app="search-app" ng-controller="search-controller" ng-cloak>
+		<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+		<div class="header">
+			<div class="search-div-one">	
+					<input type="text" id="testinput"/>		
+			</div>
+			<button ng-click="search()">搜索</button>
+		</div>
+
+	
+		<div ng-show="init_show" class="recent-search-parent">
+			<div class="recent-search">
+				<div class="recent-search-title">
+					<span>最近搜索</span>
+					<button ng-click="clear()">清除</button>
+				</div>
+				<div class="recent-search-content" ng-show="recent_search">
+					<ul>
+						<li ng-repeat="y in data_recent" ng-click="search_tiaozhuan($event)">{{y}}</li>
+					</ul>
+				</div>
+			</div>
+
+			<!--<div class="recent-search hot-search">
+				<div class="recent-search-title">
+					<span>热门搜索</span>
+					<button ng-click="paganition()">换一批</button>
+				</div>
+				<div class="recent-search-content">
+					<ul>
+						<li>亲adad子游</li>
+					</ul>
+				</div>
+			</div>-->
+
+		</div>
+
+		<div class="no-search-result" ng-show="no_search_result">
+			没有搜索到您要的“{{search_goods}}”商品
+		</div>
+		<div ng-show="have_search_result" class="have-search-result-parent">
+		
+			<div class="have-search-result">
+
+				<ul>
+					<li class="have-search-result-sort">
+						默认排序
+						<span class="sort-expand"></span>
+					</li>
+					<li>销量优先</li>
+					<li class="delivery-li">
+						配送
+						<span class="delivery-expand"></span>
+					</li>
+					<!--<li class="have-search-result-filter">更多筛选</li>-->
+				</ul>
+
+			</div>
+			<div class="search-detail-parent">
+				
+			
+			<div class="search-detail" ng-repeat="x in data_list" ng-click="link('/goods/detail.html?gid='+x._id)">
+				
+				<div class="search-detail-left">
+					<img class="scrollLoading" ng-src="{{ HOST_IMAGE }}/{{x.cover||'empty.jpg'}}@!760w_jpg" class=""/>
+				</div>
+				<div class="search-detail-right">
+					<p class="search-name">{{x.name}}</p>
+					<p class="search-brief">{{x.brief}}</p>
+					<p class="search-price">￥{{x.price.c | number : 2}}起</p>
+					<p class="search-out">已售: {{x.b_num.sale+x.r_num.sale}}件</p>
+				</div>
+
+			</div>
+		</div>
+		</div>
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js?v=2" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+</html>

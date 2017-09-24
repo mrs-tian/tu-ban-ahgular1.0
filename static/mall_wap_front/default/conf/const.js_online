@@ -1,0 +1,256 @@
+// 系统全局配置
+const HOST = "http://wmall.tubban.com.cn";
+const HOST_IMAGE = "http://image.tubban.com.cn";
+const HOST_STATIC = "http://static.tubban.com.cn";
+const HOST_API = 'http://wmall-api.tubban.com.cn';
+const HOST_WX = 'http://m.tubban.com.cn';
+const WX_PUB_APPID = "wx0ce819199405301d"
+
+window.TBMM = window.TBMM || {};
+
+TBMM.conf = {
+    HOST : HOST,
+    HOST_IMAGE : HOST_IMAGE,
+    HOST_STATIC : HOST_STATIC,
+    HOST_API: HOST_API,
+    HOST_WX: HOST_WX,
+    WX_PUB_APPID : WX_PUB_APPID
+}
+
+TBMM.data = {
+    user : null,
+    uid : null
+}
+
+
+TBMM.clear = function(){
+    TBMM.data = {
+        user : null,
+        uid : null
+    }
+    
+    localStorage.setItem("user", null);
+}
+
+/*
+ * 判断当前浏览器是否是微信浏览器
+ */
+TBMM.isWeiXin = function(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/**
+ * 获取URL上某个参数值
+ *
+ * @param {String} 参数名称
+ */
+TBMM.getQueryString = function(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+}
+
+/**
+ * 获取URL上所有参数值
+ */
+TBMM.getQueryStrings = function() {
+    var args=new Object();   
+    
+    var query=location.search.substring(1);//获取查询串   
+
+    var pairs=query.split("&");//在逗号处断开   
+
+    for(var i=0;i<pairs.length;i++) {   
+        var pos = pairs[i].indexOf('=');//查找name=value   
+            if(pos==-1) continue;//如果没有找到就跳过   
+            var argname=pairs[i].substring(0,pos);//提取name   
+            var value=pairs[i].substring(pos+1);//提取value   
+            args[argname]=unescape(value);//存为属性   
+    }
+
+    return args;
+}
+
+
+TBMM.dynamicLoading = function(type, paths){
+    
+    switch(type) {
+        case 'css':
+            var head = document.getElementsByTagName('head')[0];
+            if(!head){
+                throw new Error('head document is required !');
+            }
+            for (var i=0; i < paths.length; i++) {
+                var link = document.createElement('link');
+                link.href = paths[i];
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                head.appendChild(link);
+            }
+            break;
+        case 'js':
+            var body = document.getElementsByTagName('body')[0];
+            if(!body){
+                throw new Error('body document is required !');
+            }
+            for (var i=0; i < paths.length; i++) {
+                var script = document.createElement('script');
+                script.src = paths[i];
+                script.type = 'text/javascript';
+                body.appendChild(script);
+            }
+            break;
+    }
+    
+}
+
+TBMM.setUser = function(user) {
+    localStorage.setItem("user", JSON.stringify(user));
+    TBMM.clear();
+}
+
+TBMM.getUser = function() {
+    if (!TBMM.data.user) {
+        var user = localStorage.getItem("user")
+        TBMM.data.user = user ? JSON.parse(user) : null;
+    }
+    if (TBMM.data.user) {
+        TBMM.refreshSession();
+    }
+    return TBMM.data.user;
+}
+
+TBMM.isLogin = function(server, callback) {
+    
+    var user = TBMM.getUser();
+    
+    // 用cookie过期时间
+    if (!user || !user.id || !user.SESSIONID || $.cookie('SESSIONID') != user.SESSIONID) {
+        if (!callback) {
+            return false;
+        } else {
+            return callback(false);
+        }
+    }
+    // 强制从服务器验证
+    if (!server) {
+        if (!callback) {
+            return true;
+        } else {
+            return callback(true);
+        }
+    } else {
+        
+        $.ajax({
+            type: 'GET',
+            url: TBMM.genApiUrl("/user/isLogin"),
+            data: {},
+            success: function(data){
+                
+                if (data.code == -2) {
+                    return callback(false);
+                }
+                return callback(true);
+            },
+            error: function(){
+                console.log("身份验证请求失败");
+                return callback(false);
+            },
+            dataType: 'json'
+        });
+    }
+}
+
+TBMM.getUID = function() {
+    
+    if (!TBMM.data.uid) {
+        var user = TBMM.getUser()
+        TBMM.data.uid = user ? user['id'] : 0;
+    }
+    if (TBMM.data.user) {
+        TBMM.refreshSession();
+    }
+    return TBMM.data.uid
+} 
+
+
+TBMM.getSID = function() {
+    return $.cookie("SESSIONID") || '';
+} 
+
+TBMM.refreshSession = function() {
+    var SID = TBMM.getSID;
+    if (SID !== '') {
+        // 重新设置过期时间
+        //console.log("重设SID过期时间");
+        $.cookie('SESSIONID', SID, {expires: 1, path: "/"}); // 注意path设置
+    }
+    return true;
+}
+
+
+TBMM.genApiUrl = function(path) {
+    
+    if (path.indexOf("?") == -1) {
+        return HOST_API + path + "?SESSIONID=" + encodeURIComponent(TBMM.getSID());
+    }
+    return HOST_API + path + "&SESSIONID=" + encodeURIComponent(TBMM.getSID());
+    
+}
+
+TBMM.ajaxHandle = function(data, show_only) {
+    // 未登录
+    if (data.code == -2) {
+        
+        console.log("懒过期，清除本地数据");
+        TBMM.clear();
+        
+        if (confirm("跳转到登录页？")) {
+            window.location.href = HOST + '/login/login.html?fromUrl=' + encodeURIComponent(window.location.href);
+            return;
+        }
+    } else {
+        alert(data.message);
+    }
+    
+}
+
+// 手动转成延迟加载
+TBMM.genScrollImgHtml = function(html) {
+    
+    if (!html) {
+        return '';
+    }
+    
+    var index = 0; // 第一张直接加载，不做延迟
+    
+    //var new_str = html.replace(/(<img.+?)src="(.+?)"/, '$1 src="'+HOST_IMAGE+'/empty.jpg" class="scrollLoading" data-url="$2@!760w_webp"');
+    
+    var new_str = html.replace(/<img.*?(?:>|\/>)/gi, function(img){
+        
+            var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+            var arr = img.match(srcReg);
+            
+            if (!index++) {
+                return img;
+            }
+            
+            if (arr[1]) {
+                return '<img src="'+HOST_IMAGE+'/empty.jpg" class="scrollLoading" data-url="'+arr[1]+'" />'
+            }
+            
+            return img;
+            
+        }
+    ); 
+
+    return new_str;
+}

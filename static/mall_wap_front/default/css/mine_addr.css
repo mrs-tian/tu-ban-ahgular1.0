@@ -1,0 +1,33 @@
+.addr-add-one {
+	position: relative;
+}
+
+.delete-addr {
+	position: absolute;
+	width: 2rem;
+	height: 2rem;
+	background: url(../img/icon-shp-cart-remove.png);
+	top: 2rem;
+	right: 3rem;
+	background-size: 3.4rem 3.6rem;
+}
+
+.addr-add-button-div {
+	margin-left: 1.1rem;
+}
+
+@media only screen and (max-width:350px) {
+	.addr-add-button-div {
+		margin-left: 0.9rem;
+	}
+	.addr-add-one>div.add-info {
+		margin: 0rem 1.2rem;
+		width: 17.6rem;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.delete-addr {
+		right: 2rem;
+	}
+}

@@ -1,0 +1,27 @@
+
+
+
+http {
+	...
+	fastcgi_intercept_errors on;
+	...
+}
+
+
+server {
+    listen       80;
+    server_name  test-mall-wap.tubban.com.cn;
+
+
+    location / {
+        root /home/tubban/web/mm_mall_front/view/default;
+        #expires 30d;        
+    }
+
+    location ^~ /static/mall_wap_front/ {
+        alias /home/tubban/web/mm_mall_front/static/mall_wap_front/;
+        #expires 30d;        
+    }
+    error_page  404  /404.html;
+
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-订单管理</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon"/>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" /> 
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/gorder.css?v=1.0.1"/>
+		
+		<!--
+        	作者：2777831894@qq.com
+        	时间：2016-07-25
+        	描述：Angular在头部引入可避免页面{{}}标签闪现的问题
+        -->
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body ng-app="gorderMine" ng-controller="gorderMineController" ng-cloak>
+		
+		<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+		<!--页面之间tab切换loading-->
+		<div ng-include="HOST+'/html/loading.html'" ng-show="isLoading"></div>
+		<!--进来初始化时loading-->
+		<!--<div class="g-loading" ng-show="g_loading">
+				<img src="../../../static/mall_wap_front/default/img/loading-1.gif" />
+		</div>-->
+		<div id="tes">
+			
+			<div class="dingdanOrder">
+		        <ul>
+		            <li ng-click="tabs($event)" data-type="0" data-tab="0">
+		                全部
+		            </li>
+		
+		            <li ng-click="tabs($event)" data-type="1" data-tab="1">
+		                待付款
+		            </li>
+		            <li ng-click="tabs($event)" data-type="3" data-tab="2">
+		                待发货
+		            </li>
+		            <li ng-click="tabs($event)" data-type="4" data-tab="3">
+		                待收货
+		            </li>
+		        </ul>
+		        <div class="line"></div>
+		    </div>
+			
+			<div id="tes-two">
+				
+			    <!-- 每一块商品 -->
+			    <div class="{{ $index==0 ? 'every' : 'eveRy' }}" ng-repeat="order in gorder_list">
+			
+			        <!-- 下面总的内容 -->
+			        <div class="dianpuInfo">
+			
+			            <div class="dianpuCon">    <!-- 这个是店铺信息 -->
+			                <a href="{{HOST}}/index.html">
+			                  {{ order.s_name || "商城总店"}}
+			                    <span></span>
+			                </a>
+			
+			                <span class="{{ order.statTextClass }}" ng-bind="getStatText($index, order.status, order.pay_status, order.deliver_status)"></span>
+			
+			            </div>
+			        </div>
+			
+			
+			        <!-- 每条订单的信息 -->
+			
+			        <div class="traDeCon" ng-cloak>
+			
+			            <!-- 上半部分 -->
+			            <div class="traDe"  ng-click="goToDetail(order.seq)">
+			
+			                <p class="traDep">订单号：{{ order.seq }}</p>
+			
+			                <div class="picPrice pt5 pb5" ng-repeat="order_item in order.items">
+																
+			                    <div class="img" style="background-image: url({{HOST_IMAGE}}/{{order_item.g_cover || 'empty.jpg'}}@!320h_jpg); background-size: cover; background-position: 50% 50%;">
+			                    </div>
+			
+			                    <div class="jieshao">
+			                        <p><span class="spanname">{{order_item.g_name + ' ' +order_item.g_code}}</span></p>
+			                        <p class="xingHao">型号：{{order_item.g_spec}}</p>
+			                    </div>
+			
+			                    <div class="everyPrice">
+			                        <p class="p1">￥ {{ order_item.p_price| number : 2 }}</p>
+			                        <p class="p2"></p>
+			                        <p class="p3">&nbsp;X {{ order_item.num + order_item.g_unit.name}}</p>
+			                    </div>
+			                </div>
+			
+			            </div>
+			
+			            <!-- 下半部分 -->
+			            <div class="zhiFu">
+			            	
+			                <div class="divOne">
+			                   <i ng-show="order.coupon_id!=''" style="padding: 0.1rem 0.3rem;color: #fff;background: #F53737;position: relative;top: 1.5rem;">券</i>
+			                   <span>共 {{ order.g_num}} 件商品，应付款：￥ {{ order.pay_price| number : 2 }}</span>
+			                </div>
+			                <div class="divTwo">
+			
+			                    <a href="{{HOST}}/pay/gorder.html?seq={{ order.seq }}" class="oh_btn bg_6" ng-show="order.payable == 1">
+			                                            <button>立即支付</button>
+			                    </a>
+			                    
+			                </div>
+			            </div>
+			         </div>
+			    </div>    <!-- 每一块商品到此结束； -->
+			
+			   <!-- <div ng-show="isLoading" class="loading" id="loading"><img src="../../../static/mall_wap_front/default/img/loading-1.gif" alt="loading">加载中...</div>-->
+			
+			    <div ng-show="isDone" class="is-down">加载完成，共 {{ loadingCnt }} 条记录</div>
+
+			</div>
+			
+			<footer ng-include="HOST+'/html/footer.html'">
+			</footer>
+			
+		</div>
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<!--
+    	作者：2777831894@qq.com
+    	时间：2016-07-21
+    	描述：微信登录
+    -->
+	<script src="../../../static/mall_wap_front/default/js/wx_sign.js?v=1" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/gorder_mine.js?v=3" type="text/javascript" charset="utf-8"></script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-商品分类</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/fenlei.css?v=1" />
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid
+			_czc.push(["_setAccount", "1260450853"]);
+		</script>
+	</head>
+
+	<body ng-app="fenleiapp" ng-controller="fenlei-controller" ng-cloak>
+		<div class="g-loading" ng-show="g_loading">
+			<img src="../../../static/mall_wap_front/default/img/loading-1.gif" />
+		</div>
+		<div id="tes">
+			<div class="header">
+				<div class="search-div" ng-click="link('/html/search.html')">
+					搜索商品
+				</div>
+			</div>
+			<div class="category-line">
+
+			</div>
+
+			<div class="category-main-content">
+
+				<div class="category-left">
+					<ul>
+						<li ng-repeat="x in category" ng-class="name==x.name? 'click-on':'click-no'">{{x.name}}</li>
+					</ul>
+				</div>
+
+				<div class="category-right">
+					<ul ng-repeat="y in category">
+						<li ng-repeat="m in y.goods_list" ng-click="link('/goods/detail.html?gid='+m._id)">
+							<div class="category-right-img">
+								<img ng-if="$index==0" ng-src="{{ HOST_IMAGE }}/{{m.cover||'empty.jpg'}}@!760w_jpg" />
+								<img ng-if="$index>0" class="scrollLoading" ng-src="{{HOST_IMAGE}}/empty.jpg" data-url="{{ HOST_IMAGE }}/{{m.cover||'empty.jpg'}}@!760w_jpg" />
+							</div>
+							<div class="category-right-name">
+								{{m.name}}
+							</div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+			<footer ng-include="HOST+'/html/footer.html'">
+
+			</footer>
+		</div>
+
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/fenlei.js?v=2" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1260450853'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260450853' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</html>

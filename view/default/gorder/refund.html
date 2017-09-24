@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-申请退款</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/gorder_refund.css" />
+
+		<!--
+        	作者：2777831894@qq.com
+        	时间：2016-07-25
+        	描述：Angular在头部引入可避免页面{{}}标签闪现的问题
+        -->
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body ng-app="gorderMine" ng-controller="gorderMineController" ng-cloak>
+
+		<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+		<div class="main-content">
+			<p>
+				<span>收货人：</span><span>{{logisticAddress.contactor}}</span>
+			</p>
+			<p class="delivery-addr">
+				<span>收货地址：</span><span>{{logisticAddress.address.p.n + logisticAddress.address.c.n + logisticAddress.address.d.n + logisticAddress.detail}}</span>
+			</p>
+			<p>
+				<span>电话：</span><span>{{logisticAddress.mobile}}</span>
+			</p>
+
+			<form id="refundForm" action="#">
+				<div class="logistics-company">
+					物流公司
+					<!--<select>
+						<option>请选择物流公司</option>
+						<option>{{d_cp_name}}</option>
+
+					</select>-->
+					<input type="text" name="d_cp_name" placeholder="请选择物流公司"/>
+				</div>
+				<div class="logistics-num">
+					物流单号<input type="text" name="d_seq" placeholder="请输入单号" />
+				</div>
+				<div class="refund-reason">
+					<span>退款原因</span><textarea rows="5" name="reason" placeholder="请输入退款原因"></textarea>
+				</div>
+				<div class="refund-complain">
+					
+					<span>退款说明</span><textarea rows="5" name="note" placeholder="请输入退款说明" maxlength="200"></textarea>
+					<i>200字</i>	
+				</div>
+
+				<button type="button" ng-click="requestRefund()" id="submit">提交申请</button>
+			</form>
+		</div>
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/gorder_refund.js?v=1" type="text/javascript" charset="utf-8"></script>
+
+</html>

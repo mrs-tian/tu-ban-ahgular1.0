@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-订单详情</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/gorder_detail.css" />
+
+		<!--
+        	作者：2777831894@qq.com
+        	时间：2016-07-25
+        	描述：Angular在头部引入可避免页面{{}}标签闪现的问题
+        -->
+
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+		<!--
+	    	作者：2777831894@qq.com
+	    	时间：2016-07-21
+	    	描述：微信登录
+	    -->
+		<script src="../../../static/mall_wap_front/default/js/wx_sign.js?v=1" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+
+	<body ng-app="gorderDetail" ng-controller="gorderDetailController" ng-cloak>
+
+		<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+		<!--<div ng-include="HOST+'/html/loading.html'" ng-show="g_loading"></div>-->
+		<div class="g-loading" ng-show="g_loading">
+				<img src="../../../static/mall_wap_front/default/img/loading-1.gif" />
+		</div>
+		<div class="dingdanOrder">
+			<ul>
+				<li class="gorder-id">订单号: {{gorder.seq}} </li>
+				<li class="{{ gorder.statTextClass }} gorder-status" ng-bind="getStatText(gorder.status, gorder.pay_status, gorder.deliver_status)">
+				</li>
+				<!--已经有了样式  绑定数据即可-->
+			</ul>
+
+		</div>
+		<div class="section">  <!--section宽度必须设成100% 或者left为0  right为0  要不样式问题较大-->
+
+			<div class="dingdan-status">
+				<div>
+
+					<div class="status-submit">
+						<span>提交订单</span>
+						<span>配送中</span>
+						<span>交易完成</span>
+					</div>
+
+					<div ng-show="deliver_type==1" class="status-img status-img-one">
+						<ul>
+							<li class="status-point first-point"></li>
+							<li class="status-line first-line"></li>
+							<li class="status-point second-point"></li>
+							<li class="status-line second-line"></li>
+							<li class="status-point third-point"></li>
+						</ul>
+					</div>
+
+					<div ng-show="deliver_type==2" class="status-img status-img-two">
+						<ul>
+							<li class="status-point first-point"></li>
+							<li class="status-line first-line"></li>
+							<li class="status-point second-point"></li>
+							<li class="status-line second-line"></li>
+							<li class="status-point third-point"></li>
+						</ul>
+					</div>
+
+					<div ng-show="deliver_type==3" class="status-img status-img-three">
+						<ul>
+							<li class="status-point first-point"></li>
+							<li class="status-line first-line"></li>
+							<li class="status-point second-point"></li>
+							<li class="status-line second-line"></li>
+							<li class="status-point third-point"></li>
+						</ul>
+					</div>
+
+					<div class="fa-huo">
+						<!--<p class="fa-huo-status">暂无该订单的物流信息</p>
+						<p class="fa-huo-time">发货时间: 暂无</p>-->
+
+						<p class="fa-huo-status">暂无该订单的物流信息</p>
+						<p ng-show='gorder.deliver_time>0' class="fa-huo-time">发货时间: {{ gorder.deliver_time*1000 | date:'yyyy-MM-dd HH:mm:ss' }}</p>
+
+					</div>
+					<div class="personal-information">
+						<p class="personal-information-name"><span class="name">{{gorder.address.receiver}}</span><span>{{gorder.address.mobile}}</span></p>
+						<p class="personal-information-address">{{gorder.address.address.p.n}}{{gorder.address.address.c.n}}{{gorder.address.address.d.n}}{{gorder.address.detail}}</p>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="dianpu-Info">
+
+				<div class="dianpu-Info-container" ng-click="link('/index.html')">
+					{{gorder.s_name}}
+					<a href="javascript:;"></a>
+				</div>
+				<div class="product-information">
+					<p class="gorder-id">订单号: {{gorder.seq}}</p>
+				</div>
+				<div class="img-information" ng-repeat="item in gorder.items" ng-click="link('/goods/detail.html?gid='+item.g_id)">
+															
+					<div class="img-information-left" style="background-image: url({{HOST_IMAGE}}/{{item.g_cover || 'empty.jpg'}}@!320h_jpg); background-size: cover; background-position: 50% 50%;">
+					</div>
+					<div class="img-information-center">
+						<p class="name-brief"><span>{{item.g_name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.g_code}}</span></p>
+						<p class="model-number">型号: {{item.g_spec}}</p>
+					</div>
+					<div class="img-information-right">
+						<p class="original-price">￥{{item.p_price | number : 2}}</p>
+						<p>x {{item.num}}</p>
+					</div>
+					<div class="clear">
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="sum-price">
+				<div class="sum-price-container">
+					<p class="zong-jia"><span class="zong-jia-span-one">商品总价</span><span class="zong-jia-span-two">￥{{gorder.t_price| number : 2 }}</span></p>
+					<p class="yun-fei"><span class="zong-jia-span-one">运费 (快递)</span><span class="zong-jia-span-two">￥{{gorder.deliver_price| number : 2 }}</span></p>
+					<p class="dingdan-zongjia"><span class="zong-jia-span-one">订单总价</span><span class="zong-jia-span-two">￥{{gorder.pay_price + gorder.deliver_price| number : 2 }}</span></p>
+				</div>
+				<div class="disbursements">
+					<span class="shi-fu-kuan">实付款<i style="display: inline-block;padding: 0.1rem 0.3rem;margin-left: 1rem;color: #fff;background: #F53737;" ng-show="gorder.coupon_id!=''">券</i></span>
+					<span class="shi-fu-kuan-num">￥ {{gorder.pay_price | number : 2}}</span>
+				</div>
+			</div>
+
+			<div class="pay-way-time">
+				<p class="pay-way" ng-show="gorder.pay_time > 0"><span class="pay-way-time-span-one">支付方式：</span><span class="pay-way-time-span-two">{{pay_type[gorder.pay_channel] || '未知'}}</span></p>
+				<p class="order-time"><span class="pay-way-time-span-one">下单时间：</span><span class="pay-way-time-span-two">{{ gorder.add_time*1000 | date:'yyyy-MM-dd HH:mm:ss' }}</span></p>
+				<p class="pay-time" ng-show="gorder.pay_time > 0"><span class="pay-way-time-span-one">付款时间：</span><span class="pay-way-time-span-two">{{ gorder.pay_time*1000 | date:'yyyy-MM-dd HH:mm:ss' }}</span></p>
+			</div>			
+			<div class="order-comment">备注：{{gorder.note?gorder.note:'无'}}</div>					
+		</div>
+		<div class="dingdan-footer">
+			<!--button class="buy-again">再次购买</button-->
+			<button ng-show="gorder.refundable" class="refund" ng-click="link('/gorder/refund.html?seq='+gorder.seq)">申请退款</button>
+			<button ng-show="gorder.payable" class="buy-again" ng-click="link('/pay/gorder.html?seq='+gorder.seq)">现在支付</button>
+		</div>
+
+	</body>
+
+	
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/gorder_detail.js?v=2" type="text/javascript" charset="utf-8"></script>
+
+</html>

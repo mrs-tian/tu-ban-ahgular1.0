@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-活动详情</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/plugin/swiper-3.3.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/detail.css?v=1.0.3" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/activities_detail.css?v=1" />
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/js/wx_sign.js?v=1" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/plugin/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid
+			_czc.push(["_setAccount", "1260450853"]);
+		</script>
+	</head>
+
+	<body ng-app="activities-detail" ng-controller="activities-detail-Controller" ng-cloak>
+		<!--<div ng-include = "HOST+'/html/loading.html'" ng-show="g_loading"></div>-->
+		<div class="g-loading" ng-show="g_loading">
+			<img src="../../../static/mall_wap_front/default/img/loading-1.gif" />
+		</div>
+		<div class="act-mask" id="act-mask">
+
+		</div>
+
+		<div class="act-goto-buy" id="act-goto-buy">
+			<div class="cover-and-price">
+				<div class="cover-detail">
+					<img ng-src="{{ HOST_IMAGE }}/{{act_detail.sku.g_cover||'empty.jpg'}}@!680w_680h_jpg" />
+				</div>
+				<div class="name-price">
+					<p class="name-price-one">{{act_detail.name}}</p>
+					<p class="name-price-second">￥{{act_detail.price.c|number:2}}</p>
+				</div>
+				<button ng-click="close_buy()"></button>
+
+			</div>
+
+			<div class="pd-number">
+				<span>数量</span>
+				<div>
+					<button ng-click="cargo_minus()">-</button>
+					<input type="text" readonly="readonly" ng-model="cargo_buy_num" />
+					<button ng-click="cargo_plus()">+</button>
+				</div>
+			</div>
+
+			<button ng-click="cargo_submit(act_detail.sku.g_id,act_detail.sku.id,act_detail._id)">确认</button>
+		</div>
+
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+
+				<div class="swiper-slide lunbo-second" ng-repeat="x in img_box">
+					<img ng-src="{{HOST_IMAGE}}/{{x.name||'empty.jpg'}}@!680w_680h_jpg" />
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		<div class="act-detail-info">
+			<p><span>{{act_detail.name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{act_detail.desc}}</span></p>
+			<p class="price-p"><span class="now-price">￥{{act_detail.price.c|number:2}}</span><span class="last-price">￥:{{act_detail.price.o|number:2}}</span><span class="limit-buy">每人限购{{act_detail.per_limit}}件</span></p>
+			<p class="free">
+				<span ng-show="act_detail.delivery.free!=1">运费:{{act_detail.delivery.price|number:2}}</span>
+				<span ng-show="act_detail.delivery.free==1">运费:0.00</span>
+				<span class="shengyu-span">库存剩余:{{act_detail.amount-act_detail.amount_lock}}件</span>
+				<span class="over-span to-start" ng-show="now_time<act_detail.start_time">
+					<i>开始倒计时</i>
+					<i>{{get_hour(act_detail.start_time-now_time)}}</i><em>:</em>
+					<i>{{get_minite(act_detail.start_time-now_time)}}</i><em>:</em>
+					<i>{{get_seconds(act_detail.start_time-now_time)}}</i>
+				</span>
+				<span class="over-span have-start" ng-show="now_time>act_detail.start_time&&now_time<act_detail.end_time">
+					<i>结束倒计时</i>
+					<i>{{get_hour(act_detail.end_time-now_time)}}</i><em>:</em>
+					<i>{{get_minite(act_detail.end_time-now_time)}}</i><em>:</em>
+					<i>{{get_seconds(act_detail.end_time-now_time)}}</i>
+				</span>
+				<span class="over-span had-over" ng-show="act_detail.end_time<now_time">
+					<i>截止日期</i>
+					<i>{{act_detail.end_time*1000|date:'yyyy'}}</i><b>/</b>
+					<i>{{act_detail.end_time*1000|date:'MM'}}</i><b>/</b>
+					<i>{{act_detail.end_time*1000|date:'dd'}}</i>
+				</span>
+			</p>
+		</div>
+
+		<section class="pd-introduce">
+			<ul class="pd-introduce-ul">
+				<li class="test">图文详情
+					<div class="red-line"></div>
+				</li>
+				<li><span>{{param_label}}</span>
+					<div class="red-line"></div>
+				</li>
+				<li>{{saled_label}}
+					<div class="red-line"></div>
+				</li>
+				<div class="clear"></div>
+			</ul>
+			<div class="pic-show test" id="g_desc">
+
+			</div>
+			<div class="pic-show" id="g_param_desc">
+
+			</div>
+			<div class="pic-show" id="g_saled_desc">
+
+			</div>
+		</section>
+		<div class="to-bottom">
+			已经到最下面啦~
+		</div>
+
+		<div class="act-detail-footer">
+			<div class="in-store" ng-click="link('/index.html')">
+				逛店
+			</div>
+			<div class="in-store-now-buy" ng-click="choose_num()" ng-show="now_time>act_detail.start_time&&now_time<act_detail.end_time">
+				立即抢购
+			</div>
+			<!--这个地方能行是因为把 下边这个挤出去了 所以好使  如果宽度不够 就不好使了-->
+
+			<div class="in-store-now-buy to-begin-or-over">
+				立即抢购
+			</div>
+
+		</div>
+
+	</body>
+	<script src="../../../static/mall_wap_front/default/plugin/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js?v=5" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/activities_detail.js?v=8" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1260450853'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260450853' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</html>

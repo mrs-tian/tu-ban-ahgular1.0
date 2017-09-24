@@ -1,0 +1,459 @@
+body {
+	background: #f7f5f6;
+}
+
+header {
+	position: relative;
+	width: 100%;
+	height: 185px;
+	background: #f03535;
+}
+@media only screen and (min-width:750px) {
+	header {
+		position: relative;
+		width: 100%;
+		height: 216px;
+		background: #f03535;
+	}
+}
+
+
+.sign-in{
+	    width: 4rem;
+    height: 4rem;
+    background:url(../img/sign-logo.png);
+    position: absolute;
+    left: 81%;
+    top: 9%;
+    background-size:100% 100% ;
+}
+
+#tes-two {
+	
+	position: absolute;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100%;
+	top: 0;
+	bottom: 4.8rem;
+	z-index: 1;
+	max-width: 940px;
+	margin: 0 auto;
+}
+
+.avatar {
+	float: left;
+	width: 74px;
+	padding: 15px 20px 0 20px;
+}
+
+.avatar img {
+	width: 64px;
+	height: 64px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	border-radius: 4em;
+	border: .125em solid #FFF;
+	box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rank-grade {
+	position: relative;
+	display: inline-block;
+	width: 74px;
+	height: 18px;
+	line-height: 18px;
+	border-radius: 9px;
+	border-left: none;
+	text-align: center;
+}
+
+.rank-grade i {
+	font-style: normal;
+}
+@media only screen and (min-width:750px ) {
+	.rank-grade i {
+	font-style: normal;
+	font-size: 12px;
+}
+}
+
+.grade-num {
+	position: absolute;
+	left: 0;
+	background: url(../img/rank-logo.png) no-repeat left center;
+	background-size: 18px 18px;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	color: #fefefe;
+}
+
+.grade-desc {
+	float: left;
+	margin-left: 9px;
+	padding-left: 8px;
+	width: 58px;
+	height: 16px;
+	line-height: 16px;
+	border: 1px solid #ffda6f;
+	color: #ffda6f;
+	border-bottom-right-radius: 9px;
+	border-top-right-radius: 9px;
+	font-size: 12px;
+}
+
+.my-point,
+.my-balance {
+	margin-top: 0.5rem;
+}
+
+.user-info {
+	float: left;
+	margin-top: 40px;
+	width: 150px;
+	color: #fff;
+}
+
+.user-info h5 {
+	font-size: 18px;
+}
+
+.user-info p {
+	font-size: 12px;
+}
+
+.sign {
+	position: absolute;
+	top: 35px;
+	right: 15px;
+	width: 35px;
+	height: 35px;
+	background: url(../image/sign-logo.png) no-repeat;
+	background-size: 35px 35px;
+}
+
+.my-shopping {
+	width: 100%;
+	height: 60px;
+	background: #000;
+	color: #fff;
+	position: absolute;
+	top: 125px;
+	opacity: 0.3;
+	z-index: 5;
+}
+
+@media only screen and (min-width:750px) {
+	.my-shopping {
+		width: 100%;
+		height: 91px;
+		background: #000;
+		color: #fff;
+		position: absolute;
+		top: 125px;
+		opacity: 0.3;
+		z-index: 5;
+	}
+	.my-shoppingtwo {
+		width: 100%;
+		height: 91px;
+		background: none;
+		color: #fff;
+		position: absolute;
+		top: 125px;
+		z-index: 6;
+	}
+}
+
+.my-shoppingtwo {
+	width: 100%;
+	height: 60px;
+	background: none;
+	color: #fff;
+	position: absolute;
+	top: 125px;
+	z-index: 6;
+}
+
+.my-shoppingtwo ul li {
+	width: 33%;
+	float: left;
+	text-align: center;
+}
+
+.my-shoppingtwo ul li span {
+	display: block;
+}
+
+.my-shoppingtwo ul li span:nth-child(1) {
+	margin: 10px 0;
+}
+
+.my-order,
+.my-wallet,
+.extension {
+	background: #fff;
+	margin-bottom: 10px;
+}
+
+.my-order h3,
+.my-wallet h3,
+.extension h3 {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #ddd;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+#youlove {
+	background: #f5f5f5;
+	position: relative;
+}
+
+#youlove h3>div {
+	width: 36%;
+	position: absolute;
+	height: 1px;
+	background: #dcdcdc;
+	top: 26px;
+}
+
+#youlove h3 .line-one {
+	left: 6px;
+}
+
+#youlove h3 .line-two {
+	right: 6px;
+}
+
+.my-order-title,
+.my-wallet-title,
+.extension .extension-title {
+	float: left;
+	color: #262626;
+	margin-left: 10px;
+}
+
+.user-arrow {
+	float: right;
+	margin-right: 10px;
+	color: #b3b3b3;
+	padding-right: 20px;
+	background: url(../img/arrow.png) no-repeat right center;
+	background-size: 8px 13px;
+}
+
+.my-order ul {
+	width: 100%;
+	height: 66px;
+}
+
+.my-order ul li {
+	position: relative;
+	height: 66px;
+	float: left;
+	width: 25%;
+}
+
+.my-order ul li a {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -15px;
+	margin-left: -22px;
+	width: 44px;
+	height: 20px;
+	line-height: 25px;
+	text-align: center;
+	font-size: 12px;
+	color: #333;
+	padding-top: 20px;
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+.my-order ul li a.for-pay {
+	background-image: url(../img/fukuan.png);
+	background-size: 24px 19px;
+}
+
+.my-order ul li a.for-delive {
+	background-image: url(../img/fahuo.png);
+	background-size: 22px 20px;
+}
+
+.my-order ul li a.for-recept {
+	background-image: url(../img/shouhuo.png);
+	background-size: 22px 22px;
+}
+
+.my-order ul li a.refunding {
+	background-image: url(../img/tuikuan.png);
+	background-size: 22px 20px;
+}
+
+.order-count {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: 3px;
+	margin-top: -24px;
+	height: 16px;
+	min-width: 16px;
+	font-size: 12px;
+	line-height: 16px;
+	text-align: center;
+	color: #f03535;
+	border: 1px solid #f03535;
+	border-radius: 8px;
+	background: #fff;
+}
+
+.my-wallet ul {
+	width: 100%;
+	height: 60px;
+	padding: 10px 0;
+	font-size: 12px;
+	color: #333;
+}
+
+.my-wallet ul li a {
+	color: #333;
+}
+
+.my-wallet ul li {
+	position: relative;
+	float: left;
+	width: 25%;
+	height: 60px;
+	border-left: 1px solid #ddd;
+	box-sizing: border-box;
+}
+
+.my-wallet ul li:first-child {
+	border-left: none;
+}
+
+.wallet-detail {
+	position: absolute;
+	left: 50%;
+	margin-left: -30px;
+	width: 60px;
+}
+
+.wallet-detail span {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin: 10px 0 2px 0;
+}
+
+.personal-info {
+	background: #fff;
+	width: 100%;
+}
+
+.personal-info li {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #ddd;
+	font-size: 16px;
+	color: #262626;
+}
+
+.personal-info-title {
+	margin-left: 10px;
+}
+
+.extension-detail {
+	width: 100%;
+	overflow: hidden;
+}
+
+.extension-detail ul li {
+	width: 33%;
+	float: left;
+}
+
+.extension-detail ul li:nth-child(2) {
+	width: 34%;
+	box-sizing: border-box;
+	padding: 0 5px;
+}
+
+.products-detail img {
+	width: 100%;
+	height: 125px;
+}
+
+.product-info {
+	width: 100%;
+}
+
+.product-info p {
+	padding: 0 5px;
+}
+
+.product-price {
+	float: left;
+	color: #f03535;
+}
+
+.product-count {
+	float: right;
+	color: #999;
+}
+
+.prodect-name {
+	color: #666;
+	font-size: 14px;
+}
+
+.product-extra {
+	font-size: 12px;
+}
+
+.extension-index {
+	position: relative;
+	width: 100%;
+	height: 30px;
+}
+
+.extension-item {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -35px;
+	width: 70px;
+}
+
+.extension-item li {
+	float: left;
+	margin-left: 10px;
+	width: 6px;
+	height: 6px;
+	border: 1px solid #999;
+	border-radius: 3px;
+}
+
+#extitle {
+	text-align: center;
+	width: 100%;
+	color: #808080;
+}
+
+.extension-item li.on {
+	width: 12px;
+	height: 8px;
+	background: #f03535;
+	border: none;
+}
+
+.extension-item li:first-child {
+	margin-left: 0;
+}

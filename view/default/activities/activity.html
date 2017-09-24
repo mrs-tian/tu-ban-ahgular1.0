@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-活动</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/activities.css?v=1" />
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/js/wx_sign.js?v=1" type="text/javascript" charset="utf-8"></script>
+
+		<script>
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid
+			_czc.push(["_setAccount", "1260450853"]);
+		</script>
+
+	</head>
+
+	<body ng-app="activities" ng-controller="activitiesController" ng-cloak>
+		<!--<div ng-include="HOST+'/html/loading.html'" ng-show="g_loading"></div>-->
+		<div class="g-loading" ng-show="g_loading">
+			<img src="../../../static/mall_wap_front/default/img/loading-1.gif" />
+		</div>
+		<div class="act" ng-repeat="x in act_list">
+			<div class="free" ng-show="x.delivery.free==1">
+				包邮
+			</div>
+
+			<div class="act-img" ng-click="link('/activities/activity_detail.html?aid='+x._id)">
+				<img ng-src="{{ HOST_IMAGE }}/{{x.cover||'empty.jpg'}}@!760w_jpg" />
+			</div>
+			<div class="act-detail">
+
+				<p><span>{{x.name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="act-detail-brief">{{x.desc}}</span></p>
+				<p><span>￥{{x.price.c|number:2}}</span><span>原价:{{x.price.o|number:2}}</span><span>每人限购{{x.per_limit}}件</span></p>
+				<p>
+					<div class="about-to-begin" ng-show="now_time<x.start_time">
+						<div class="start-count-time">
+							<span>开始倒计时</span>
+							<span>{{get_hour(x.start_time-now_time)}}</span>&nbsp;<em>:</em>
+							<span>{{get_minite(x.start_time-now_time)}}</span>&nbsp;<em>:</em>
+							<span>{{get_seconds(x.start_time-now_time)}}</span>
+						</div>
+						<div class="start-btn">
+							<button ng-click="link('/activities/activity_detail.html?aid='+x._id)">即将开始</button>
+						</div>
+					</div>
+
+					<div class="buy-now" ng-show="now_time>x.start_time&&now_time<x.end_time">
+						<div class="start-count-time">
+							<span>结束倒计时</span>
+							<span>{{get_hour(x.end_time-now_time)}}</span>&nbsp;<em>:</em>
+							<span>{{get_minite(x.end_time-now_time)}}</span>&nbsp;<em>:</em>
+							<span>{{get_seconds(x.end_time-now_time)}}</span>
+						</div>
+						<div class="start-btn">
+							<button ng-click="link('/activities/activity_detail.html?aid='+x._id)">立即抢购</button>
+						</div>
+					</div>
+
+					<div class="activity-over" ng-show="x.end_time<now_time">
+						<div class="start-count-time act-over">
+							<span>截止日期</span>
+							<span>{{x.end_time*1000|date:'yyyy'}}</span>&nbsp;<b>/</b>
+							<span>{{x.end_time*1000|date:'MM'}}</span>&nbsp;<b>/</b>
+							<span>{{x.end_time*1000|date:'dd'}}</span>
+						</div>
+						<div class="start-btn over-btn">
+							<button ng-click="link('/activities/activity_detail.html?aid='+x._id)">活动结束</button>
+						</div>
+					</div>
+				</p>
+
+			</div>
+
+		</div>
+
+	</body>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/activities.js?v=1" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1260450853'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260450853' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</html>

@@ -1,0 +1,56 @@
+<!-- Alert Widget -->
+<!-- 
+	
+	//// 使用前页面body内引入此代码
+	<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+
+	//// 示例一： 通用，需要点击确定或取消
+	$scope.alert = {
+		on: true,
+		type: '',
+		buttonStyle: 'single', // 'single', 'double', 'none'
+		icon: 'success', // 'success', 'error', 'warning', 'info'
+		message: 'xxxxxxxx',
+		confirmed: function(){
+			$scope.alert.on = false;
+			if( $scope.alert.type == '' ){
+	
+			}
+		},
+		canceled: function(){
+			$scope.alert.on = false;
+		}
+	}
+	// $scope.$apply(); // !!!!! 如果是Ajax内必须加此语句
+	
+	
+	////  示例二： 自动消失的提示
+	$scope.alert = {
+		on: true,
+		icon: 'warning',
+		buttonStyle: 'none', // 'single', 'double', 'none'
+		message: '请先选择要删除的栏目'
+	}
+	// $scope.$apply(); // !!!!! 如果是Ajax内必须加此语句
+	setTimeout(function(){$scope.alert.on = false;$scope.$apply()}, 1500);
+	
+ -->
+<div>
+	<div class="alert-mask" ng-click="alert.canceled()"></div>
+
+	<div id="alert-panel" class="widget-panel">
+
+		<div ng-show="alert.icon.length > 0" class="alert-icon {{ alert.icon }}"></div>
+
+		<div class="message-div">
+			<span ng-bind="alert.message"></span>
+		</div>
+
+		<div class="control-div" ng-hide="alert.buttonStyle=='none'">
+			<div class="confirm-btn-main {{ alert.buttonStyle=='single' ? 'single' : '' }}" ng-click="alert.confirmed()">确定</div>
+			<div class="confirm-btn-cancel" ng-click="alert.canceled()" ng-hide="alert.buttonStyle=='single'">取消</div>
+		</div>
+		
+
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-用户登录</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/login.css" />
+	</head>
+
+	<body ng-app="login" ng-controller="login-controller">
+		<!--<div ng-include="HOST+'/html/loading.html'" ng-show="g_loading"></div>-->
+		<div id="tes">
+
+			<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+
+			<article>
+				<section class="login-logo">
+					<div><img src="../../../static/mall_wap_front/default/img/loginimg/loginlogo.png" /></div>
+					<div class="login-info">
+						<input type="text" placeholder="请输入用户名" id="user-name" ng-model="user_name" ng-change="change_user_info()" /><br />
+						<input type="password" placeholder="请输入密码" id="password" ng-model="pass_word" ng-change="change_user_info()" /><br />
+						<input type="button" value="登录" id="deng-lu" />
+					</div>
+				</section>
+
+			</article>
+
+			<footer ng-include="HOST+'/html/footer.html'">
+
+			</footer>
+		</div>
+	</body>
+	<script src="../../../static/mall_wap_front/default/plugin/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/plugin/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/login.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

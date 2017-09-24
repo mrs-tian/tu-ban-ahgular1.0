@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>途伴旅行家-商品详情</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/plugin/swiper-3.3.1.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/detail.css?v=1.0.3" />
+
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css?v=2" />
+
+		<style>
+			#YSF-BTN-HOLDER {
+				display: none;
+			}
+		</style>
+
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/plugin/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/plugin/iscroll.js" type="text/javascript" charset="utf-8"></script>
+		<!--
+	    	作者：2777831894@qq.com
+	    	时间：2016-07-21
+	    	描述：微信登录
+	    -->
+		<script src="../../../static/mall_wap_front/default/js/wx_sign.js?v=1" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid
+			_czc.push(["_setAccount", "1260450853"]);
+		</script>
+	</head>
+
+	<body ng-app="detail" ng-controller="detailController" ng-cloak>
+		<div id="tes">
+			<div ng-include="HOST+'/html/gotocar.html'"></div>
+			<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+			<!--<div ng-include="HOST+'/html/loading.html'" ng-show="g_loading"></div>-->
+			<div class="g-loading" ng-show="g_loading">
+				<img src="../../../static/mall_wap_front/default/img/loading-1.gif" />
+			</div>
+			<!--<div id="wrapper">
+				<div id="scroller">-->
+
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+
+					<div class="swiper-slide lunbo" ng-repeat="x in goods.images">
+						<img ng-src="{{HOST_IMAGE}}/{{x.name||'empty.jpg'}}@!680w_680h_jpg" />
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+
+			<section class="pd-product-info">
+
+				<div class="pd-name-detail">
+					<div class="div-left">
+						<p ng-bind="goods.name"></p>
+						<p ng-bind="goods.brief"></p>
+					</div>
+					<div class="div-right">
+						<a id="fav" gid="{{goods._id}}" class="ajax_btn pd-product-collection"></a>
+						<a id="like" class="ajax_btn pd-support-btn" gid="{{goods._id}}"></a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="pd-price-detail">
+					<span class="pd-now-price">￥ {{ goods.price.c | number : 2  }}</span>
+					<span class="pd-old-price">￥ {{ goods.price.m | number : 2  }}</span>
+					<span class="te-jia"></span>
+					<span class="surplus">剩余：{{cargo_stock_num}}</span>
+				</div>
+				<div class="pd-count-detail">
+					<span class="pd-sold-count">销量{{goods.b_num.sale + goods.r_num.sale}}件</span>
+					<span class="pd-share-count">分享{{goods.b_num.share + goods.r_num.share}}次</span>
+					<span class="pd-like-count">点赞{{goods.b_num.like + goods.r_num.like}}人</span>
+				</div>
+			</section>
+
+			<!--<div class="shi-fang">
+
+					</div>-->
+
+			<section class="pd-introduce">
+				<ul class="pd-introduce-ul">
+					<li class="test">图文详情
+						<div class="red-line"></div>
+					</li>
+					<li><span>{{goods.param_label}}</span>
+						<div class="red-line"></div>
+					</li>
+					<li>{{goods.saled_label}}
+						<div class="red-line"></div>
+					</li>
+					<div class="clear"></div>
+				</ul>
+				<div class="pic-show test" id="g_desc">
+
+				</div>
+				<div class="pic-show" id="g_param_desc">
+
+				</div>
+				<div class="pic-show" id="g_saled_desc">
+
+				</div>
+			</section>
+			<div class="to-bottom">
+				已经到最下面啦~
+			</div>
+
+			<!--</div>
+
+			</div>-->
+
+			<section class="footer">
+				<ul>
+					<li>客服</li>
+					<li>商城</li>
+					<li>购物车</li>
+					<li class="ajax_btn">加入购物车</li>
+					<li class="ajax_btn">立即购买</li>
+					<div class="clear"></div>
+				</ul>
+				<div class="cart-count" id="cart-count-detail" ng-show="cargo_cart_num > 0" ng-bind="cargo_cart_num">
+				</div>
+			</section>
+
+		</div>
+	</body>
+
+	<script src="../../../static/mall_wap_front/default/plugin/angular-sanitize.js" type="text/javascript" charset="utf-8"></script>
+	<!--script src="../../../static/mall_wap_front/default/plugin/inifite-scroll.js" type="text/javascript" charset="utf-8"></script-->
+	<script src="../../../static/mall_wap_front/default/plugin/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<!--
+    	作者：2777831894@qq.com
+    	时间：2016-07-22
+    	描述：七鱼客服
+    -->
+
+	<script src="https://qiyukf.com/script/a6a166ea5a7455f2f0d0c21630aa6dc0.js" async="true"></script>
+
+	<script src="../../../static/mall_wap_front/default/js/common.js?v=10" type="text/javascript" charset="utf-8"></script>
+
+	<script src="../../../static/mall_wap_front/default/js/detail.js?v=8" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1260450853'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260450853' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</html>

@@ -1,0 +1,148 @@
+body{
+	background: #ebebeb;
+	
+	color: #333333;
+}
+.main-content{
+	background: #fff;
+	padding: 1.5rem 1.2rem 2rem 1.2rem;
+	font-size: 1.2rem;
+}
+
+.delivery-addr{
+	
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.logistics-company,.logistics-num{
+	background: url(../img/wu-xing.png) no-repeat 5rem 1.8rem;
+}
+@media only screen and (max-width:350px) {
+	.logistics-company,.logistics-num{
+	background: url(../img/wu-xing.png) no-repeat 4.2rem 1.8rem;
+}
+}
+
+.refund-reason{
+	background: url(../img/wu-xing.png) no-repeat 5rem 0.8rem;
+}
+@media only screen and (max-width:350px ) {
+	.refund-reason{
+	background: url(../img/wu-xing.png) no-repeat 4.2rem 0.8rem;
+}
+}
+.logistics-company select{
+	border: 1px solid #999999;
+	border-radius: 0.2rem;
+	height: 2.6rem;
+	font-size: 1rem;
+	color: #999999;
+	margin-left: 1.5rem;
+	margin-top: 1.2rem;
+	width: 22.3rem;
+}
+.logistics-company input{
+	border: 1px solid #999999;
+	border-radius: 0.2rem;
+	height: 2.6rem;
+	font-size: 1rem;
+	color: #999999;
+	margin-left: 1.5rem;
+	margin-top: 1.2rem;
+	width: 22.1rem;
+}
+
+@media only screen and (max-width:350px ) {
+	.logistics-company input{
+	
+	width:18.2rem;
+}
+}
+
+.logistics-num input{
+	border: 1px solid #999999;
+	border-radius: 0.2rem;
+	height: 2.6rem;
+	font-size: 1rem;
+	color: #999999;
+	padding-left: 0.5rem;
+	width: 22rem;
+	margin: 1.2rem 0 1.2rem 1.5rem;
+}
+@media only screen and (max-width:350px ) {
+	.logistics-num input{
+	
+	width: 18rem;
+	
+}
+.logistics-company select{
+	
+	width: 18.3rem;
+}
+}
+.refund-reason,.refund-complain{
+	position: relative;
+}
+.refund-complain i{
+	position: absolute;
+	right: 0.8rem;
+	bottom: 0.5rem;
+	font-size: 1rem;
+	color: #999999;
+}
+.refund-reason textarea,.refund-complain textarea{
+	border: 1px solid #999999;
+	border-radius: 0.2rem;
+	padding-top: 0.8rem;
+	font-size: 1rem;
+	color: #999999;
+	padding-left: 0.5rem;
+	margin-left: 1.5rem;
+	width: 22rem;
+}
+@media only screen and (max-width:350px ) {
+.refund-reason textarea,.refund-complain textarea{
+	width:18rem;
+}	
+}
+
+
+.refund-reason span,.refund-complain span{
+	position: relative;
+	top: -5rem;
+}
+.refund-complain textarea{
+	margin-top: 1.2rem;
+}
+
+#submit{
+	width: 110%;
+	height: 4.9rem;
+	color: #fff;
+	background: #F53737;
+	font-size: 1.6rem;
+	position: fixed;
+	bottom: 0;
+	margin-left: -2rem; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

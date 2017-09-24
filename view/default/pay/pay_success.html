@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<title>途伴旅行家-支付成功</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/pay_success.css" />
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body ng-app="pay_success" ng-controller="pay_successController" ng-cloak>
+		
+		<div class="buy-success">
+			<p><img src="../../../static/mall_wap_front/default/img/pay-ok.png"/></p>
+			<p class="buy-success-p">购买成功</p>
+			<p class="process-soon">我们将尽快处理您的订单</p>
+		</div>
+		
+		<div class="look-browse">
+			<button class="look-order" ng-click="link('/gorder/detail.html?seq='+seq)">查看订单</button>
+			<button class="continue-look" ng-click="link('/index.html')">继续逛逛</button>
+		</div>
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/pay_success.js" type="text/javascript" charset="utf-8"></script>
+
+</html>
+
+<!--$window.location.href = HOST + "/gorder/detail.html?seq=" + $scope.seq;-->

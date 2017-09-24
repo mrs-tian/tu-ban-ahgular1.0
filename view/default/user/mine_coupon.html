@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta itemprop="name" content="途伴旅行家" />
+		<meta itemprop="image" content="http://static.tubban.com.cn/public/image/FullBg300.jpg" />
+		<meta name="description" itemprop="description" content="致力于打造瑞士旅游第一品牌，力荐定制游、亲子游、蜜月游、夏令营、户外活动等~" />
+		<title>途伴旅行家-我的优惠券</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />	
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css?v=2" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/mine_coupon.css"/>
+		<!--
+        	作者：2777831894@qq.com
+        	时间：2016-07-25
+        	描述：Angular在头部引入可避免页面{{}}标签闪现的问题
+       -->
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../static/mall_wap_front/default/conf/const.js?v=2" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app="coupon_app" ng-controller="coupon_app_controller" ng-cloak>
+		
+		
+		<div class="coupon-status-name">
+			<ul>
+				<li ng-click="no_use($event)">未使用({{no_use_num.length}})</li>
+				<li ng-click="have_use($event)" class="have-use">已使用({{have_use_num.length}})</li>
+				<li ng-click="no_time($event)">已过期({{no_time_num.length}})</li>
+			</ul>
+		</div>
+		<div class="coupon-line">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		
+		<div class="coupon-status-list">
+			<!--可用-->
+			<ul ng-show="ke_yong">
+				<li ng-repeat="x in no_use_num">
+					<img ng-src="{{ HOST_IMAGE }}/{{x.cover||'empty.jpg'}}"/>
+				</li>
+			</ul>
+			<!--已使用-->
+			<ul ng-show="yi_shi_yong">
+				<li ng-repeat="x in have_use_num">
+					<img ng-src="{{ HOST_IMAGE }}/{{x.cover||'empty.jpg'}}"/>
+				</li>
+			</ul>
+			<!--已过期-->
+			<ul ng-show="yi_guo_qi">
+				<li ng-repeat="x in no_time_num">
+					<img ng-src="{{ HOST_IMAGE }}/{{x.cover||'empty.jpg'}}"/>
+				</li>
+			</ul>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+	<script src="../../../static/mall_wap_front/default/js/common.js?v=8" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/mine_coupon.js" type="text/javascript" charset="utf-8"></script>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../static/mall_wap_front/default/css/shoppingcar.css" />
+		<title>途伴旅行家-购物车</title>
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="bookmark" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="../../../static/mall_wap_front/default/img/favicon.ico" mce_href="/../../static/mall_wap_front/default/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+		<script src="../../../static/mall_wap_front/default/js/lib.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body ng-app="shoppingCar" ng-controller="shoppingCarController" ng-cloak>
+
+		<div ng-include="HOST+'/html/alert.html'" id="alert-container" ng-show="alert.on"></div>
+		<div id="tes">
+			<div class="delete">
+				<span ng-click="deleteItems()">删除</span>
+			</div>
+			<ul class="cart-list">
+				<li ng-repeat="item in gcart.list">
+					<div class="li-top">
+						<div class="li-left" ng-click="selectCartItem(item.id)">
+							<div class="buy-delete" ng-class="item.selected ? 'tab-slected' : 'buy-delete'"></div>
+							<div class="div-img" ng-include="HOST+'/html/loading.html'" ng-show="g_loading"></div>
+							<div class="div-img" style="background-image: url({{HOST_IMAGE}}/{{item.g_cover || 'empty.jpg'}}@!320h_jpg);" ng-show="!g_loading"></div>
+						</div>
+						<div class="li-right">
+							<p>{{ item.g_name }}</p>
+							<p>型号:<span id="jun-ma">{{ item.g_spec }}</span></p>
+							<p><span>¥ {{ item.p_price | number : 2 }}</span></p>
+						</div>
+						<div class="pd-number shoppingcar-pd-number">
+							<div>
+								<button ng-click="cargo_minus(item.g_stock_id)" class="ajax_btn">-</button>
+								<input type="text" readonly="readonly" ng-model="item.num" />
+								<button ng-click="cargo_plus(item.g_stock_id)" class="ajax_btn">+</button>
+							</div>
+						</div>
+
+					</div>
+					<div class="li-bottom">
+						<span>本单已参与特价优惠</span>
+					</div>
+				</li>
+
+			</ul>
+			<div class="jie-suan">
+				<div ng-class="checkall ? 'quan-xuan': 'un-quan-xuan'" ng-click="checkAll()"></div>
+				<div class="jie-suan-left ajax_btn">
+					全选
+				</div>
+				<div class="jie-suan-center">
+					<p>合计：¥ {{gcart.g_price_total | number : 2 }}</p>
+					<p>¥ {{gcart.g_price_total | number : 2 }} (不含运费)</p>
+				</div>
+				<div class="jie-suan-right ajax_btn submit-disabled" ng-click="createOrder()">
+					去结算<span ng-show="gcart.g_num_total>0" ng-bind="'('+gcart.g_num_total+')'"></span>
+				</div>
+				<div class="clear">
+
+				</div>
+			</div>
+		</div>
+
+		<!--购物车为空时  显示-->
+		<div class="cart-empty" ng-show="cart_empty">
+
+			<img src="../../../static/mall_wap_front/default/img/cart-empty.png" />
+			<p>购物车是空的哦，快去挑选商品吧</p>
+			<button ng-click="link('/index.html')">去逛逛</button>
+
+		</div>
+
+	</body>
+	<script src="../../../static/mall_wap_front/default/conf/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../static/mall_wap_front/default/js/shopping.js?v=2" type="text/javascript" charset="utf-8"></script>
+
+</html>

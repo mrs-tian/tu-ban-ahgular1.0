@@ -1,0 +1,299 @@
+.swiper-wrapper>div {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-wrapper>div img {
+	width: 100%;
+	height: 100%;
+}
+
+.pd-product-info {
+	padding: 1.3rem 1.2rem;
+	position: relative;
+}
+
+.pd-product-info .te-jia {
+	background: url(../img/teJia.png) no-repeat center;
+	background-size: 2.8rem 1.5rem;
+	width: 3rem;
+	height: 2rem;
+	float: left;
+	margin-top: -0.4rem;
+}
+
+.div-left p {
+	line-height: 2rem;
+}
+
+.div-left p:nth-child(1) {
+	font-size: 1.5rem;
+	color: #4c4c4c;
+	font-weight: 900;
+	margin-bottom: 1rem;
+}
+
+.div-left p:nth-child(2) {
+	font-size: 1.3rem;
+	color: #7a7a7a;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.div-left {
+	float: left;
+	width: 20.5rem;
+}
+
+@media only screen and (max-width: 350px) {
+	.div-left {
+		width: 16.5rem;
+	}
+}
+
+.div-right {
+	position: relative;
+	float: right;
+	width: 90px;
+	height: 40px;
+	border-left: 1px solid #ddd;
+	box-sizing: border-box;
+}
+
+.clear {
+	clear: both;
+}
+
+.pd-now-price {
+	color: #F53737;
+	font-size: 1.6rem;
+	font-weight: 900;
+	float: left;
+}
+
+.pd-old-price {
+	text-decoration: line-through;
+	float: left;
+	margin: 0.4rem 0.4rem 0 1.2rem;
+}
+
+.pd-old-price,
+.surplus {
+	color: #999999;
+	font-size: 1.2rem;
+}
+
+.surplus {
+	float: right;
+	margin-top: 0.4rem;
+}
+
+.pd-price-detail {
+	margin: 0.8rem 0 1.3rem 0;
+	overflow: hidden;
+}
+
+.pd-count-detail {
+	border-top: 0.5px solid #999999;
+	padding: 1.2rem 0.1rem 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.pd-count-detail>span {
+	color: #999999;
+	font-size: 1rem;
+}
+
+.shi-fang {
+	width: 100%;
+	height: 3.3rem;
+	background: url(../img/detail01.png) no-repeat left top;
+	background-size: 100% 100%;
+}
+
+.pd-introduce-ul {
+	width: 100%;
+	height: 4rem;
+	background: #fff;
+	max-width: 940px;
+	
+}
+
+.pd-introduce-ul li {
+	color: #808080;
+	font-size: 1.2rem;
+	height: 4rem;
+	width: 33%;
+	float: left;
+	text-align: center;
+	line-height: 4rem;
+	position: relative;
+}
+
+.pd-introduce-ul li:nth-child(2) span {
+	border-left: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+	height: 2.5rem;
+	display: block;
+	margin-top: 0.8rem;
+	line-height: 2.4rem;
+}
+
+.pd-introduce-ul li.test {
+	color: #F53737;
+}
+
+.red-line {
+	width: 100%;
+	height: 2px;
+	background: #F53737;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+}
+
+.pd-introduce-ul li.test .red-line {
+	display: block;
+}
+
+#cart-count-detail {
+	left: 14rem;
+}
+
+@media only screen and (max-width:350px) {
+	#cart-count-detail {
+		left: 12rem;
+	}
+}
+
+.pic-show.test {
+	display: block;
+}
+
+.pic-show {
+	display: none;
+	width: 100%;
+	overflow-x: hidden;
+	min-height: 600px;
+}
+
+.pic-show img {
+	width: 100%;
+}
+
+
+/*吸顶时的固定*/
+
+.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	left: 0;
+	border-bottom:1px solid #ddd;
+}
+
+.fixededone {
+	position: fixed;
+	top: -1px;
+	left: 0;
+	z-index: 10;
+	border-bottom:1px solid #ddd;
+}
+
+.to-bottom {
+	height: 9rem;
+	font-size: 1.2rem;
+	line-height: 4rem;
+	text-align: center;
+	color: #d9d9d9;
+	border-top: 1px solid #d9d9d9;
+}
+
+section.footer {
+	height: 4.8rem;
+	position: fixed;
+	bottom: -1px;
+	width: 100%;
+	border-top: 1px solid #a8a5a1;
+	z-index: 20;
+	background: #fff;
+	max-width: 960px;
+}
+
+section.footer ul li {
+	float: left;
+	float: left;
+	color: #b3b3b3;
+	font-size: 1.2rem;
+	height: 4.8rem;
+	padding-top: 3.0rem;
+	text-align: center;
+	width: 17.4%;
+}
+
+section.footer ul li:nth-child(1) {
+	background: url(../img/kefubule.png) no-repeat center 0.6rem;
+	background-size: 2.1rem 2.1rem;
+}
+
+section.footer ul li:nth-child(2) {
+	background: url(../img/home.png) no-repeat center 0.6rem;
+	background-size: 2.1rem 2.1rem;
+}
+
+section.footer ul li:nth-child(3) {
+	background: url(../img/shopping-car-logo.png) no-repeat center 0.6rem;
+	background-size: 2.1rem 2.1rem;
+}
+
+section.footer ul li:nth-child(4) {
+	width: 23.9%;
+	background: #fb5b5b;
+	color: #fff;
+	padding-top: 1.8rem;
+}
+
+section.footer ul li:nth-child(5) {
+	width: 23.9%;
+	background: #f03535;
+	color: #fff;
+	padding-top: 1.8rem;
+}
+
+.pd-product-collection {
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	top: 50%;
+	margin-top: -14px;
+	left: 20px;
+	background: url(../img/collection.png) no-repeat;
+	background-size: 28px 28px;
+}
+
+.pd-product-collection.on {
+	background: url(../img/collection-on.png) no-repeat top center;
+	background-size: 28px 28px;
+}
+
+.pd-support-btn {
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	top: 50%;
+	margin-top: -14px;
+	right: 0;
+	background: url(../img/support.png) no-repeat;
+	background-size: 28px 28px;
+}
+
+.pd-support-btn.on {
+	background: url(../img/support-on.png) no-repeat;
+	background-size: 28px 28px;
+}
+
+
+

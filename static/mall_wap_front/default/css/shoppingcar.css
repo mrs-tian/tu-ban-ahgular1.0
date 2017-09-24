@@ -1,0 +1,257 @@
+body {
+	background: #f5f5f5;
+}
+.cart-empty{
+	width: 100%;
+	background: #f5f5f5;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	text-align: center;
+	
+}
+.cart-empty img{
+	width: 4.5rem;
+	height: 8rem;
+	margin:6.8rem auto 1.6rem;
+}
+.cart-empty p{
+	font-size: 1.4rem;
+}
+.cart-empty button{
+	width: 11rem;
+	height: 3.9rem;
+	background: #F53737;
+	border-radius: 0.3rem;
+	font-size: 1.5rem;
+	color: #fff;
+	margin-top: 1.5rem;
+}
+.delete {
+	height: 2.4rem;
+	color: #808080;
+	font-size: 1.1rem;
+	padding-top: 1rem;
+	background: #fff;
+	position: fixed;
+	top: 0;
+	border-bottom: 1px solid #ddd;
+	width: 100%;
+	max-width: 940px;
+	z-index: 5;
+}
+
+.delete span {
+	margin-left: 90%;
+}
+
+.cart-list {
+	width: 100%;
+	position: absolute;
+	top: 3.4rem;
+	bottom: 5rem;
+	overflow: auto;
+}
+
+.cart-list li {
+	margin-top: 0.8rem;
+	background: #fff;
+	padding: 1.2rem 1.2rem 1.6rem;
+	overflow: hidden;
+}
+
+.div-img {
+	width: 6.5rem;
+	height: 6.5rem;
+	border: 1px solid #f0f0f0;
+	overflow: hidden;
+	margin: 0 0.5rem 1.2rem 0.9rem;
+	background-size: cover; 
+	background-position: 50% 50%;
+}
+
+.div-img img {
+	width: 120%;
+	height: 120%;
+	margin-left: -10%;
+	margin-top: -10%;
+}
+
+.li-top {
+	overflow: hidden;
+	border-bottom: 1px solid #e5e5e5;
+	height: 7.5rem;
+}
+
+.li-top>div {
+	float: left;
+}
+
+.buy-delete {
+	width: 1rem;
+	height: 1rem;
+	margin-top: 3rem;
+	background: url(../img/cart-unselect.png) no-repeat center;
+	background-size: 100% 100%;
+}
+
+.tab-slected {
+	width: 1rem;
+	height: 1rem;
+	margin-top: 3rem;
+	background: url(../img/cart-selected.png) no-repeat center;
+	background-size: 100% 100%;
+}
+
+.li-left {
+	overflow: hidden;
+}
+
+.li-left>div {
+	float: left;
+}
+
+.li-right {
+	width: 65%;
+	position: relative;
+}
+
+@media only screen and (max-width:350px) {
+	.li-right {
+		width: 60%;
+		position: relative;
+	}
+}
+
+.li-right p:nth-child(1) {
+	color: #333333;
+	font-weight: 900;
+	font-size: 1.2rem;
+	line-height: 1.7rem;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.li-right p:nth-child(2) {
+	color: #808080;
+	margin-top: 0.4rem;
+	font-size: 1rem;
+}
+
+.li-right p:nth-child(3) {
+	position: absolute;
+	left: 0;
+	top: 5rem;
+}
+
+.li-right p:nth-child(3) span:nth-child(1) {
+	color: #f03535;
+	font-weight: 900;
+	font-size: 1.2rem;
+	margin-right: 1rem;
+}
+
+#jun-ma {
+	display: inline-block;
+	margin: 0 1rem;
+}
+
+.li-right p:nth-child(3) span:nth-child(2) {
+	color: #808080;
+	text-decoration: line-through;
+	font-size: 1rem;
+}
+
+.li-bottom {
+	margin-left: 0.3rem;
+	color: #808080;
+	font-size: 1rem;
+	background:url(../img/isFree.png) no-repeat left 108%;
+	
+}
+.li-bottom span{
+	    position: relative;
+    top: 6px;
+    left: 6%;
+}
+
+.jie-suan {
+	height: 4.7rem;
+	position: fixed;
+	bottom: 0;
+	background: #fff;
+	border-top: 1px solid #ddd;
+	width: 100%;
+	max-width: 940px;
+}
+
+.jie-suan>div {
+	float: left;
+}
+
+.jie-suan-left {
+	font-size: 1rem;
+	color: #4c4c4c;
+	margin-right: 1.3rem;
+	margin-top: 1.8rem;
+}
+
+.jie-suan-center {
+	margin-top: 1rem;
+}
+
+.jie-suan-center p:nth-child(1) {
+	font-size: 1.3rem;
+	color: #333333;
+	font-weight: 900;
+}
+
+.jie-suan-center p:nth-child(2) {
+	font-size: 0.9rem;
+	color: #333333;
+}
+
+.jie-suan div.jie-suan-right {
+	font-size: 1.3rem;
+	color: #ffffff;
+	background: #f03535;
+	width: 10rem;
+	height: 100%;
+	float: right;
+	text-align: center;
+	line-height: 4.7rem;
+}
+
+.un-quan-xuan {
+	width: 1.5rem;
+	height: 1.5rem;
+	background: pink;
+	margin: 1.65rem 0.8rem 0 1.1rem;
+	background: url(../img/cart-unselect.png) no-repeat center;
+	background-size: 100% 100%;
+}
+
+.quan-xuan {
+	width: 1.5rem;
+	height: 1.5rem;
+	background: pink;
+	margin: 1.65rem 0.8rem 0 1.1rem;
+	background: url(../img/cart-selected.png) no-repeat center;
+	background-size: 100% 100%;
+}
+
+.shoppingcar-pd-number {
+	position: relative;
+	width: 38%;
+    left: 28%;
+	bottom:0.8rem;
+}
+
+@media only screen and (max-width:350px ) {
+	.shoppingcar-pd-number {
+    left: 22%;
+}
+}

@@ -1,0 +1,43 @@
+
+.coupon-status-name ul{
+	padding: 1.2rem 0 1.2rem 0;
+	display: flex;
+	
+}
+.coupon-status-name ul li{
+	
+	text-align: center;
+	font-size: 1.4rem;
+	flex-grow: 1;
+	color: #333333;
+	
+	
+}
+.coupon-line ul{
+	display: flex;
+}.coupon-line ul li{
+	height: 1px;
+	flex-grow: 1;
+	background: #333333;
+}
+.coupon-line ul li.active{
+	background: #F53737;
+}
+.coupon-status-name ul li.active{
+	color: #F53737;
+	
+}
+.have-use{
+	border-left:1px solid #e8e8e8;
+	border-right:1px solid #e8e8e8;
+}
+.coupon-status-list ul li{
+	width:79.7%;
+	height: 6rem;
+	margin: 0.8rem auto 0;
+
+}
+ img{
+ 	width: 100%;
+ 	height: 100%;
+}
